@@ -152,7 +152,7 @@ if __name__ == '__main__':
     algos.extend(['Рунге-Кутт'] * len(x_runge_cutt))
     gh.plot_results(x, y, algos=algos)
     '''
-    x_max, error = find_x_max_euler(1, 0.1, 0, 0, 0.01)
+    x_max, error = find_x_max_euler(1, 0.01, 0, 0, 0.01)
     print(x_max, error)
 
 #tb.print_table(['x', 'y'], res_arr)

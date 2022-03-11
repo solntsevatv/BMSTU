@@ -1,0 +1,12 @@
+"АНАЛИЗ СУЩЕСТВУЮЩИХ СИМУЛЯТОРОВ РОБОТОТЕХНИЧЕСКИХ СИСТЕМ" Я.С.Пикалѐв 2017
+"Robot Task Learning based on Reinforcement Learning in Virtual Space" Tadashi Tsubone, Koichi Sugiyama, and Yasuhiro Wada 2007
+Николаева Т. М. Паралингвистика // Лингвистический энциклопедический словарь / Главный редактор В. Н. Ярцева. —  Советская энциклопедия, 1990. — 685 с. — ISBN 5-85270-031-2.
+http://f2robot.com/robot/ - 29.11.2021
+"Emotion space modelling for social robots" Fei Yan, Abdullah M. Iliyasu, Kaoru Hirota 2021
+"The Oxford Handbook of Affective Computing" Rafael A. Calvo, Sidney K. D'Mello, Jonathan Grathc, Arvid Kappas 2015
+"Emotion and sociable humanoid robots" Cynthia Breazeal 2002
+"Grounded Action Transformation for Robot Learning in Simulation" Josiah P. Hanna, Peter Stone 2017
+"О рекомендательной маршрутной системе, основанной на оценке предпочтений пользователя" Токарева М.М. Волкова Л.Л. 2016
+"Автоматическая обработка текстов на естественном языке и компьютерная лингвистика" Большакова Е.И., Клышинский Э.С., Ландэ Д.В., Носков А.А., Пескова О.В., Ягунова Е.В 2011
+
+Литература 10 -> 15 -> 18, чем больше, тем лучше
