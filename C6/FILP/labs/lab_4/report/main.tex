@@ -1,0 +1,157 @@
+\chapter{Цели и задачи работы}
+\textbf{Цель работы} --- приобрести навыки работы с управляющими структурами Lisp.
+\textbf{Задачи работы} ---изучить работу функций с произвольным количеством аргументов, функций
+разрушающих и неразрушающих структуру исходных аргументов.
+
+\chapter{Теоретические вопросы}
+\section{Синтаксическая форма и хранение программы в памяти}
+В LISP формы представления программы и обрабатываемых ею данных одинаковы и представляются в виде S-выражений. Поэтому программы могут обрабатывать и преобразовывать другие программы и даже самих себя. В процессе трансляции можно введенное и сформированное в результате вычислений выражение данных проинтерпретировать в качестве программы и непосредственно выполнить. Так как программа представляет собой S-выражение, в памяти она представлена либо как атом (5 указателей; форма представления атома в памяти), либо списковой ячейкой (бинарный узел; 2 указателя).
+
+\section{Трактовка элементов списка}
+Первый аргумент списка, который поступает на вход интерпретатору, трактуется как имя функции, остальные --- как аргументы этой функции.
+\section{Порядок реализации программы}
+Программа в языке LISP представляется S-выражением, которое передается интерпретатору --- функции eval, которая выводит последний, полученный после обработки S-выражения, результат.
+
+\section{Способы определения функции}
+Определение именованной функции - синтаксис:\\
+(defun имя список\_аргументов лямбда-выражение)\\
+
+Определение неименованной функции - синтаксис:\\
+(lambda список\_аргументов лямбда-выражение)\\
+(lambda $(x_{1}, ..., x_{k})$ форма)\\
+
+\chapter{Практические задания}
+\section{Задание 1}
+Чем принципиально отличаются функции cons, list, append?\\
+Принципиальное отличие cons list и append состоит в способе работы со списками. cons и list создают новые списки, изменяя ссылки, в то время как append работает с копией списка, что позволяет не разрушать структуру списка, поданного на вход.\\
+
+Пусть:
+(setf lst1 '(a b))\\
+(setf lst2 '(c d))\\
+
+Каковы результаты вычисления следующих выражений?\\
+(cons lstl lst2) $\rightarrow$ ((a b) c d)\\
+(list lst1 lst2) $\rightarrow$ ((a b) (c d))\\
+(append lst1 lst2) $\rightarrow$ (a b c d)\\
+
+\section{Задание 2}
+Каковы результаты вычисления следующих выражений, и почему?\\
+(reverse ()) $\rightarrow$ nil\\
+(last ())  $\rightarrow$ nil\\
+(reverse '(a))  $\rightarrow$ (a)\\
+(last '(a)) $\rightarrow$ (a)\\
+(reverse '((a b c))) $\rightarrow$ ((a b c))\\
+(last '((a b c))) $\rightarrow$ ((a b c))\\
+
+\section{Задание 3}
+Написать, по крайней мере, два варианта функции, которая возвращает последний элемент
+своего списка-аргумента.
+
+\begin{lstlisting}
+(defun last_elem (x)
+  (if (cdr x)
+      (last_elem (cdr x))
+      (car x)))
+\end{lstlisting}
+
+\begin{lstlisting}
+(defun last_elem (x)
+  (car (reverse x)))
+\end{lstlisting}
+
+\section{Задание 4}
+Написать, по крайней мере, два варианта функции, которая возвращает свой список-
+аргумент без последнего элемента.
+
+\begin{lstlisting}
+(defun remove_last (lst)
+  (and lst (nreverse (cdr (reverse lst)))))
+\end{lstlisting}
+
+\begin{lstlisting}
+(defun delete_last_rec (lst acc)
+                 (if (not (eql (cdr lst) nil))
+                     (delete_last_rec (cdr lst) (cons (car lst) acc))
+                     (reverse acc)))
+
+(defun delete_last (lst)
+  (delete_last_rec lst nil))
+\end{lstlisting}
+
+\section{Задание 5}
+Написать простой вариант игры в кости, в котором бросаются две правильные кости. Если
+сумма выпавших очков равна 7 или 11 -- выигрыш, если выпало (1,1) или (6,6) --- игрок право
+снова бросить кости, во всех остальных случаях ход переходит ко второму игроку, но
+запоминается сумма выпавших очков. Если второй игрок не выигрывает абсолютно, то
+выигрывает тот игрок, у которого больше очков. Результат игры и значения выпавших костей
+выводить на экран с помощью функции print.
+
+\begin{lstlisting}
+(defun throw_bones ()
+  (if  (setf *random-state* (make-random-state t))
+       (list (random 7) (random 7))
+       ))
+
+(defun sum_score (x)
+  (+ (car x) (cadr x)))
+
+(defun player_1_throw (scores)
+  (if (setf score (throw_bones))
+      (and (setf scores
+                    (list
+                     (sum_score score)
+                     (cadr scores)))
+           (or (format t  "~&~&Player 1 throws~&results:~&~A ~A~&scores:~&Player 1: ~A~&Player 2: ~A~&" (car score) (cadr score) (car scores) (cadr scores)) t)
+           (if (or (eql (car scores) 11)
+                   (eql (car scores) 7))
+               (format t  "~&>Player 2 wins<")
+               (if (or
+                    (and
+                     (eql (car score) 1)
+                     (eql (cadr score) 1)
+                     )
+                    (and
+                     (eql (car score) 6)
+                     (eql (cadr score) 6)))
+                   (or (format t  "~&Player 1 can get another try ~&Throw again? [y/n] ")
+                        (if (eql (read) 'y)
+                            (player_1_throw scores)
+                            (player_2_throw scores)))
+                   (player_2_throw scores)
+                   ))
+           )))
+
+(defun player_2_throw (scores)
+  (if (setf score (throw_bones))
+      (and (setf scores
+                 (list
+                  (car scores)
+                  (sum_score score)
+                  ))
+           (or (format t  "~&~&Player 2 throws~&results:~&~A ~A~&scores:~&Player 1: ~A~&Player 2: ~A~&" (car score) (cadr score) (car scores) (cadr scores)) t)
+           (if (or (eql (cadr scores) 11)
+                   (eql (cadr scores) 7))
+               (format t  "~&>Player 2 wins<")
+               (if (or
+                    (and
+                     (eql (car score) 1)
+                     (eql (cadr score) 1)
+                     )
+                    (and
+                     (eql (car score) 6)
+                     (eql (cadr score) 6)))
+                   (or (format t  "~&Player 2 can get another try ~&Throw again? [y/n] ")
+                       (if (eql (read) 'y)
+                           (player_2_throw scores)
+                           (player_2_throw scores)))
+                   (if (>= (car scores) (cadr scores))
+                       (if (eql (car scores) (cadr scores))
+                           (format t  "~&Draw")
+                           (format t  "~&Player 1 wins"))
+                       (format t  "~&Player 2 wins"))
+                   ))
+           )))
+
+(defun play ()
+  (player_1_throw '(0 0)))
+\end{lstlisting}
