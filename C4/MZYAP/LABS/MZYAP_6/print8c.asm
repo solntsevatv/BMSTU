@@ -1,0 +1,44 @@
+PUBLIC PRINT8C
+EXTRN NUM: WORD
+
+CODESEG SEGMENT 'CODE'
+
+PRINTREGISTER8 PROC FAR
+    MOV AX, BX
+    MOV BX, 0008h
+
+    MOV BP, SP
+
+    XOR CX, CX
+    MOV CX, '$'
+    PUSH CX
+    CYCLE:
+        XOR DX, DX
+        DIV BX
+
+        ADD DL, '0'
+        XCHG DL, DH
+        PUSH DX
+        INC SP
+        
+        CMP AX, 0h
+        JNE CYCLE
+
+    MOV AH, 09h
+    MOV BX, SS
+    MOV DS, BX
+    MOV DX, SP
+    INT 21h
+
+    MOV SP, BP
+    RET
+
+PRINTREGISTER8 ENDP
+
+PRINT8C PROC FAR
+    MOV BX, DS:NUM
+    CALL PRINTREGISTER8
+    RET
+PRINT8C ENDP
+CODESEG ENDS
+END

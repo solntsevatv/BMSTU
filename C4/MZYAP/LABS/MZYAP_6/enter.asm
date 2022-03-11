@@ -1,0 +1,46 @@
+PUBLIC STRGET
+EXTRN NUM: WORD
+
+DATASEG SEGMENT 'DATA'
+    INBUFF DB 17, ?
+    INTSTR DB 17 DUP('0')
+DATASEG ENDS
+
+CODESEG SEGMENT 'CODE'
+STRGET PROC FAR
+    XOR SI, SI
+    MOV AX, DATASEG
+    MOV DS, AX
+
+    MOV DX, OFFSET DS:INBUFF
+    MOV AH, 0Ah
+    INT 21h
+    
+    XOR AX, AX
+    XOR BX, BX
+    XOR DX, DX
+    CYCLE:
+        MOV DL, DS:INTSTR[BX]
+        CMP DL, "-"
+        JNE CONTINUE
+        MOV SI, 0001h
+        JMP NEGCONT
+        CONTINUE:
+        SUB DL, '0'
+        SHL AX, 1
+        XOR AX, DX
+        NEGCONT:
+        INC BX
+        CMP BL, DS:INBUFF[1]
+        JNE CYCLE
+    CMP SI, 0001h
+    JNE EXIT
+    NEG AX
+    EXIT:
+    MOV BX, SEG NUM
+    MOV DS, BX
+    MOV DS:NUM, AX
+    RET
+STRGET ENDP
+CODESEG ENDS
+END

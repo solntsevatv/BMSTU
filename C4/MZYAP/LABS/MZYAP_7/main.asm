@@ -1,0 +1,59 @@
+.MODEL TINY
+.CODE
+.186
+
+ORG 100h
+
+MAIN PROC NEAR
+
+    OLD_1Ch DD ?
+    PRED_SEC DB 0
+    AUTOREPEAT DB 0
+    
+    JMP INIT
+    TICKER PROC FAR
+        PUSHA
+        PUSH ES
+        PUSH DS
+
+        MOV AX, 02h
+        INT 1Ah
+        CMP CS:PRED_SEC, DH
+        JE NO_UPDATE
+        MOV CS:PRED_SEC, DH
+        INC CS:AUTOREPEAT
+
+        MOV AL, 0F3h
+        OUT 60h, AL
+        MOV AL, AUTOREPEAT
+        OUT 60h, AL
+
+        CMP CS:AUTOREPEAT, 11111b
+        JNE NO_UPDATE
+        MOV CS:AUTOREPEAT, 00h
+
+        NO_UPDATE:
+        POP DS
+        POP ES
+        POPA
+        JMP CS:OLD_1Ch
+    TICKER ENDP
+
+INIT:
+    MOV AX, 351Ch
+    INT 21h
+    MOV WORD PTR OLD_1Ch, BX
+    MOV WORD PTR OLD_1Ch+2, ES
+
+    MOV AX, 251Ch
+    MOV DX, OFFSET TICKER
+    INT 21h
+
+    MOV AX, 3100h
+    MOV DX, OFFSET INIT
+    INT 21h
+
+    RET
+MAIN ENDP
+
+END MAIN

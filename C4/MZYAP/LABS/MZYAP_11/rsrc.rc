@@ -1,0 +1,69 @@
+// �������������������������������������������������������������������������������������������������
+
+#include "\masm32\INCLUDE\resource.h"
+
+#define MANIFEST 24
+
+// �������������������������������������������������������������������������������������������������
+
+1 MANIFEST "manifest.xml"
+
+500 ICON "project.ico"
+
+// �������������������������������������������������������������������������������������������������
+
+#define LANG_NEUTRAL 0
+#define SUBLANG_NEUTRAL 0
+
+#define MAIN_DIALOG 100
+#define FIRST_NUM_EDIT 101
+#define SUM_LABEL 102
+#define SECOND_NUM_EDIT 103
+#define EQUAL_LABEL 104
+#define RESULT_LABEL 105
+#define SUM_BTN 106
+
+MAIN_DIALOG DIALOG 327, 117, 90, 50
+LANGUAGE LANG_NEUTRAL, SUBLANG_NEUTRAL
+STYLE DS_MODALFRAME | WS_POPUP | WS_VISIBLE | WS_CAPTION | WS_SYSMENU | DS_CENTER
+CAPTION "Dialog Title"
+FONT 8, "MS Shell Dlg"
+BEGIN
+    CONTROL "", FIRST_NUM_EDIT, "Edit", WS_TABSTOP, 10, 10, 15, 10
+    CONTROL "+", SUM_LABEL, "Static", WS_TABSTOP, 30, 10, 5, 10
+    CONTROL "", SECOND_NUM_EDIT, "Edit", WS_TABSTOP, 40, 10, 15, 10
+    CONTROL "=", EQUAL_LABEL, "Static", WS_TABSTOP, 60, 10, 5, 10
+    CONTROL "", 105, "Static", WS_TABSTOP, 70, 10, 16, 10
+    CONTROL "+", 106, "Button", WS_TABSTOP, 10, 25, 70, 20
+END
+
+// �������������������������������������������������������������������������������������������������
+
+VS_VERSION_INFO VERSIONINFO
+FILEVERSION 1, 0, 0, 0
+PRODUCTVERSION 1, 0, 0, 0
+FILEOS 0
+FILETYPE VFT_APP
+BEGIN
+  BLOCK "StringFileInfo"
+  BEGIN
+    BLOCK "040904B0"
+    BEGIN
+      VALUE "CompanyName",      "Your Name or Company\000"
+      VALUE "FileDescription",  "Description of your app\000"
+      VALUE "FileVersion",      "1.0\000"
+      VALUE "InternalName",     "tool name\000"
+      VALUE "OriginalFilename", "project.exe\000"
+      VALUE "LegalCopyright",   "\251 2020 Your Name\000"
+      VALUE "ProductName",      "Your Product Name\000"
+      VALUE "ProductVersion",   "1.0\000"
+    END
+  END
+  BLOCK "VarFileInfo"
+  BEGIN
+    VALUE "Translation", 0x409, 0x4B0
+  END
+END  
+
+// �������������������������������������������������������������������������������������������������
+

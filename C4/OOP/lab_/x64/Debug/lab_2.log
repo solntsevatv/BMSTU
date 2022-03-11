@@ -1,0 +1,18 @@
+﻿  main.cpp
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(3,1): warning C4005: '_CRT_SECURE_NO_WARNINGS': macro redefinition
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp : message : see previous definition of '_CRT_SECURE_NO_WARNINGS'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(45,28): warning C4101: 'err': unreferenced local variable
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(38): message : while compiling class template member function 'std::shared_ptr<Matrix<int>::MatrixRow []> Matrix<int>::_allocMemory(size_t,size_t)'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructs_and_eqopers.hpp(95): message : see reference to function template instantiation 'std::shared_ptr<Matrix<int>::MatrixRow []> Matrix<int>::_allocMemory(size_t,size_t)' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructs_and_eqopers.hpp(83): message : while compiling class template member function 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(308): message : see reference to function template instantiation 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(12): message : see reference to class template instantiation 'Matrix<int>' being compiled
+  lab_2.vcxproj -> D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\x64\Debug\lab_2.exe

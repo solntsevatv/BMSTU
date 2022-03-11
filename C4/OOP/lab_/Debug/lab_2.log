@@ -1,0 +1,209 @@
+﻿  main.cpp
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(23,28): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(15): message : while compiling class template member function 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(319): message : see reference to function template instantiation 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(10): message : see reference to class template instantiation 'Matrix<int>' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(24,35): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(99,28): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(91): message : while compiling class template member function 'Matrix<int> &Matrix<int>::operator =(std::initializer_list<std::initializer_list<Type>>)'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(345): message : see reference to function template instantiation 'Matrix<int> &Matrix<int>::operator =(std::initializer_list<std::initializer_list<Type>>)' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(100,35): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(185,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(182): message : while compiling class template member function 'Matrix<double> Matrix<double>::operator /(const Type &) const'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(224): message : see reference to function template instantiation 'Matrix<double> Matrix<double>::operator /(const Type &) const' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(186,31): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(170,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(167): message : while compiling class template member function 'Matrix<double> &Matrix<double>::operator /=(const Type &)'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(187): message : see reference to function template instantiation 'Matrix<double> &Matrix<double>::operator /=(const Type &)' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(171,31): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(55,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(52): message : while compiling class template member function 'Type Matrix<Type>::determinant(void) const'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(252): message : see reference to function template instantiation 'Type Matrix<Type>::determinant(void) const' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(56,28): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(67,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(63): message : while compiling class template member function 'void Matrix<double>::inverse(void)'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(254): message : see reference to function template instantiation 'void Matrix<double>::inverse(void)' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(68,28): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(5,27): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(2): message : while compiling class template member function 'Type &Matrix<Type>::MatrixRow::operator [](size_t)'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(285): message : see reference to function template instantiation 'Type &Matrix<Type>::MatrixRow::operator [](size_t)' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(285): message : see reference to class template instantiation 'Matrix<double>::MatrixRow' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(6,26): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(62,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(53): message : while compiling class template member function 'std::shared_ptr<Matrix<int>::MatrixRow []> Matrix<int>::_allocateMemory(size_t,size_t)'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(27): message : see reference to function template instantiation 'std::shared_ptr<Matrix<int>::MatrixRow []> Matrix<int>::_allocateMemory(size_t,size_t)' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(15): message : while compiling class template member function 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(319): message : see reference to function template instantiation 'Matrix<int>::Matrix(std::initializer_list<std::initializer_list<Type>>)' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(63,27): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(60,28): warning C4101: 'err': unreferenced local variable
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(24,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(21): message : while compiling class template member function 'void Matrix<int>::_checkIndex(size_t,size_t) const'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_form_operations.hpp(37): message : see reference to function template instantiation 'void Matrix<int>::_checkIndex(size_t,size_t) const' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(25,26): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(5,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(2): message : while compiling class template member function 'void Matrix<int>::_checkSizes(const Matrix<int> &) const'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(42): message : see reference to function template instantiation 'void Matrix<int>::_checkSizes(const Matrix<int> &) const' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(6,36): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(14,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(11): message : while compiling class template member function 'void Matrix<int>::_checkMultSizes(const Matrix<int> &) const'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(64): message : see reference to function template instantiation 'void Matrix<int>::_checkMultSizes(const Matrix<int> &) const' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_private.hpp(15,36): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(16,27): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(13): message : while compiling class template member function 'const Type &Matrix<Type>::MatrixRow::operator [](size_t) const'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(46): message : see reference to function template instantiation 'const Type &Matrix<Type>::MatrixRow::operator [](size_t) const' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(34): message : see reference to class template instantiation 'Matrix<int>::MatrixRow' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_row.hpp(17,26): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(60,23): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(56): message : while compiling class template member function 'void Iterator<Type>::_checkIndex(const string)'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(86): message : see reference to function template instantiation 'void Iterator<Type>::_checkIndex(const string)' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_operators.hpp(143): message : while compiling class template member function 'Matrix<double> &Matrix<double>::operator +=(const Type &) noexcept'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(175): message : see reference to function template instantiation 'Matrix<double> &Matrix<double>::operator +=(const Type &) noexcept' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(61,22): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(68,27): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(65): message : while compiling class template member function 'void Iterator<Type>::_checkValid(const string) const'
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(85): message : see reference to function template instantiation 'void Iterator<Type>::_checkValid(const string) const' being compiled
+          with
+          [
+              Type=double
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\iterator.hpp(69,27): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(57,23): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(53): message : while compiling class template member function 'void ConstIterator<Type>::_checkIndex(const string) const'
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(83): message : see reference to function template instantiation 'void ConstIterator<Type>::_checkIndex(const string) const' being compiled
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_iterators.hpp(12): message : while compiling class template member function 'ConstIterator<Type> Matrix<Type>::begin(void) const'
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(153): message : see reference to function template instantiation 'ConstIterator<Type> Matrix<Type>::begin(void) const' being compiled
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(58,22): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(65,27): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(62): message : while compiling class template member function 'void ConstIterator<Type>::_checkValid(const string) const'
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(82): message : see reference to function template instantiation 'void ConstIterator<Type>::_checkValid(const string) const' being compiled
+          with
+          [
+              Type=string
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\const_iterator.hpp(66,27): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(43,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(50): message : see reference to function template instantiation 'void _checkPtr<T**>(int**)' being compiled
+          with
+          [
+              T=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(49): message : while compiling class template member function 'Matrix<int>::Matrix(size_t,size_t,Type **)'
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(28): message : see reference to function template instantiation 'Matrix<int>::Matrix(size_t,size_t,Type **)' being compiled
+          with
+          [
+              Type=int
+          ]
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_constructors_and_eqoperators.hpp(44,31): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(5,24): error C4996: 'localtime': This function or variable may be unsafe. Consider using localtime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(78): message : see reference to function template instantiation 'void _excludeCopy<double>(Matrix<double> &,const Matrix<double> &,size_t,size_t)' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(63): message : while compiling class template member function 'void Matrix<double>::inverse(void)'
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\main.cpp(254): message : see reference to function template instantiation 'void Matrix<double>::inverse(void)' being compiled
+D:\Storage\Andrew\BMSTU\C4\OOP\lab_2\matrix_math.hpp(6,36): error C4996: 'asctime': This function or variable may be unsafe. Consider using asctime_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.

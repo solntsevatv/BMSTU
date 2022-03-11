@@ -1,0 +1,62 @@
+PUBLIC PRINT16C
+EXTRN NUM: WORD
+
+CODESEG SEGMENT 'CODE'
+
+TO_HEX_DIGIT PROC NEAR
+    CMP DL, 10
+    JL DECIMAL
+    SUB DL, 10
+    ADD DL, 'A'
+    RET
+    DECIMAL:
+        ADD DL, '0'
+    RET
+TO_HEX_DIGIT ENDP
+
+PRINTREGISTER16 PROC FAR
+    MOV AX, BX
+    MOV BX, 0010h
+
+    MOV BP, SP
+
+    XOR CX, CX
+    MOV CX, '$'
+    PUSH CX
+    CYCLE:
+        XOR DX, DX
+        DIV BX
+
+        CALL TO_HEX_DIGIT
+        XCHG DL, DH
+        PUSH DX
+        INC SP
+        
+        CMP AX, 0h
+        JNE CYCLE
+
+    MOV AH, 09h
+    MOV BX, SS
+    MOV DS, BX
+    MOV DX, SP
+    INT 21h
+
+    MOV SP, BP
+    RET
+
+PRINTREGISTER16 ENDP
+
+PRINT16C PROC FAR
+    MOV BX, DS:NUM
+    MOV AH, 02h
+    CMP BX, 0h
+    JGE PLUS
+        MOV DL, '-'
+        INT 21h
+        NEG BX
+    PLUS:
+    CALL PRINTREGISTER16
+    RET
+PRINT16C ENDP
+CODESEG ENDS
+END
