@@ -1,0 +1,96 @@
+===
+String len: 100
+Leventsein table: 0.0040625
+===
+===
+String len: 200
+Leventsein table: 0.01625
+===
+===
+String len: 300
+Leventsein table: 0.0353125
+===
+===
+String len: 400
+Leventsein table: 0.06875
+===
+===
+String len: 500
+Leventsein table: 0.115625
+===
+===
+String len: 100
+Leventsein recursive matrix: 0.03375
+===
+===
+String len: 200
+Leventsein recursive matrix: 0.114375
+===
+===
+String len: 300
+Leventsein recursive matrix: 0.2653125
+===
+===
+String len: 400
+Leventsein recursive matrix: 0.4675
+===
+===
+String len: 500
+Leventsein recursive matrix: 0.7459375
+===
+===
+String len: 100
+Damerau-Leventsein table: 0.01625
+===
+===
+String len: 200
+Damerau-Leventsein table: 0.064375
+===
+===
+String len: 300
+Damerau-Leventsein table: 0.14875
+===
+===
+String len: 400
+Damerau-Leventsein table: 0.271875
+===
+===
+String len: 500
+Damerau-Leventsein table: 0.45
+===
+===
+String len: 1
+Leventsein recursive: 0.0
+===
+===
+String len: 2
+Leventsein recursive: 0.0
+===
+===
+String len: 3
+Leventsein recursive: 0.0
+===
+===
+String len: 4
+Leventsein recursive: 0.0003125
+===
+===
+String len: 5
+Leventsein recursive: 0.0009375
+===
+===
+String len: 6
+Leventsein recursive: 0.005625
+===
+===
+String len: 7
+Leventsein recursive: 0.0303125
+===
+===
+String len: 8
+Leventsein recursive: 0.16625
+===
+===
+String len: 9
+Leventsein recursive: 0.89375
+===

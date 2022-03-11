@@ -1,0 +1,27 @@
+
+LSNRCTL for 64-bit Windows: Version 11.2.0.1.0 - Production on 09-NOV-2020 19:32:06
+
+Copyright (c) 1991, 2010, Oracle.  All rights reserved.
+
+Welcome to LSNRCTL, type "help" for information.
+
+LSNRCTL> Connecting to (ADDRESS=(PROTOCOL=TCP)(HOST=localhost)(PORT=1522))
+STATUS of the LISTENER
+------------------------
+Alias                     LISTENER
+Version                   TNSLSNR for 64-bit Windows: Version 11.2.0.1.0 - Production
+Start Date                09-NOV-2020 09:10:39
+Uptime                    0 days 10 hr. 21 min. 27 sec
+Trace Level               off
+Security                  ON: Local OS Authentication
+SNMP                      OFF
+Listener Parameter File   C:\app\bmstu\product\11.2.0\dbhome_3\network\admin\listener.ora
+Listener Log File         c:\app\bmstu\diag\tnslsnr\PC-9b56c2\listener\alert\log.xml
+Listening Endpoints Summary...
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=ipc)(PIPENAME=\\.\pipe\EXTPROC1522ipc)))
+  (DESCRIPTION=(ADDRESS=(PROTOCOL=tcp)(HOST=127.0.0.1)(PORT=1522)))
+Services Summary...
+Service "CLRExtProc" has 1 instance(s).
+  Instance "CLRExtProc", status UNKNOWN, has 1 handler(s) for this service...
+The command completed successfully
+LSNRCTL> 

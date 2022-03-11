@@ -1,0 +1,27 @@
+Metadata-Version: 2.1
+Name: python-bmstu-helper
+Version: 0.0.1
+Summary: UNKNOWN
+Home-page: https://github.com/RullDeef/pybmstu
+Author: Yorlend, Rull Deef
+License: MIT
+Platform: UNKNOWN
+Description-Content-Type: text/markdown
+
+# Утилита для создания шаблонов для отчетов и РПЗ для МГТУ по ГОСТу в формате LaTeX.
+
+## Установка
+---
+
+```shell
+$ python3 setup.py install
+```
+
+## Использование
+---
+
+`pybmstu tex report` -> *создание шаблона отчета в текущей директории*
+
+`pybmstu tex paper` -> *создание шаблона РПЗ в текущей директории*
+
+

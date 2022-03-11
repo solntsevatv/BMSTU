@@ -1,0 +1,280 @@
+Nodes:
+node #0 , coords = {1, 7}, visited = 0
+node #1 , coords = {4, 0}, visited = 0
+node #2 , coords = {9, 4}, visited = 0
+node #3 , coords = {8, 8}, visited = 0
+node #4 , coords = {2, 4}, visited = 0
+node #5 , coords = {5, 5}, visited = 0
+node #6 , coords = {1, 1}, visited = 0
+node #7 , coords = {5, 2}, visited = 0
+node #8 , coords = {7, 6}, visited = 0
+node #9 , coords = {1, 4}, visited = 0
+
+Paths:
+paths for node #0:
+   node to: 1, distance: 7, ferromone: 1
+   node to: 2, distance: 8, ferromone: 1
+   node to: 3, distance: 7, ferromone: 1
+   node to: 4, distance: 3, ferromone: 1
+   node to: 5, distance: 4, ferromone: 1
+   node to: 6, distance: 6, ferromone: 1
+   node to: 7, distance: 6, ferromone: 1
+   node to: 8, distance: 6, ferromone: 1
+   node to: 9, distance: 3, ferromone: 1
+paths for node #1:
+   node to: 0, distance: 7, ferromone: 1
+   node to: 2, distance: 6, ferromone: 1
+   node to: 3, distance: 8, ferromone: 1
+   node to: 4, distance: 4, ferromone: 1
+   node to: 5, distance: 5, ferromone: 1
+   node to: 6, distance: 3, ferromone: 1
+   node to: 7, distance: 2, ferromone: 1
+   node to: 8, distance: 6, ferromone: 1
+   node to: 9, distance: 5, ferromone: 1
+paths for node #2:
+   node to: 0, distance: 8, ferromone: 1
+   node to: 1, distance: 6, ferromone: 1
+   node to: 3, distance: 4, ferromone: 1
+   node to: 4, distance: 7, ferromone: 1
+   node to: 5, distance: 4, ferromone: 1
+   node to: 6, distance: 8, ferromone: 1
+   node to: 7, distance: 4, ferromone: 1
+   node to: 8, distance: 2, ferromone: 1
+   node to: 9, distance: 8, ferromone: 1
+paths for node #3:
+   node to: 0, distance: 7, ferromone: 1
+   node to: 1, distance: 8, ferromone: 1
+   node to: 2, distance: 4, ferromone: 1
+   node to: 4, distance: 7, ferromone: 1
+   node to: 5, distance: 4, ferromone: 1
+   node to: 6, distance: 9, ferromone: 1
+   node to: 7, distance: 6, ferromone: 1
+   node to: 8, distance: 2, ferromone: 1
+   node to: 9, distance: 8, ferromone: 1
+paths for node #4:
+   node to: 0, distance: 3, ferromone: 1
+   node to: 1, distance: 4, ferromone: 1
+   node to: 2, distance: 7, ferromone: 1
+   node to: 3, distance: 7, ferromone: 1
+   node to: 5, distance: 3, ferromone: 1
+   node to: 6, distance: 3, ferromone: 1
+   node to: 7, distance: 3, ferromone: 1
+   node to: 8, distance: 5, ferromone: 1
+   node to: 9, distance: 1, ferromone: 1
+paths for node #5:
+   node to: 0, distance: 4, ferromone: 1
+   node to: 1, distance: 5, ferromone: 1
+   node to: 2, distance: 4, ferromone: 1
+   node to: 3, distance: 4, ferromone: 1
+   node to: 4, distance: 3, ferromone: 1
+   node to: 6, distance: 5, ferromone: 1
+   node to: 7, distance: 3, ferromone: 1
+   node to: 8, distance: 2, ferromone: 1
+   node to: 9, distance: 4, ferromone: 1
+paths for node #6:
+   node to: 0, distance: 6, ferromone: 1
+   node to: 1, distance: 3, ferromone: 1
+   node to: 2, distance: 8, ferromone: 1
+   node to: 3, distance: 9, ferromone: 1
+   node to: 4, distance: 3, ferromone: 1
+   node to: 5, distance: 5, ferromone: 1
+   node to: 7, distance: 4, ferromone: 1
+   node to: 8, distance: 7, ferromone: 1
+   node to: 9, distance: 3, ferromone: 1
+paths for node #7:
+   node to: 0, distance: 6, ferromone: 1
+   node to: 1, distance: 2, ferromone: 1
+   node to: 2, distance: 4, ferromone: 1
+   node to: 3, distance: 6, ferromone: 1
+   node to: 4, distance: 3, ferromone: 1
+   node to: 5, distance: 3, ferromone: 1
+   node to: 6, distance: 4, ferromone: 1
+   node to: 8, distance: 4, ferromone: 1
+   node to: 9, distance: 4, ferromone: 1
+paths for node #8:
+   node to: 0, distance: 6, ferromone: 1
+   node to: 1, distance: 6, ferromone: 1
+   node to: 2, distance: 2, ferromone: 1
+   node to: 3, distance: 2, ferromone: 1
+   node to: 4, distance: 5, ferromone: 1
+   node to: 5, distance: 2, ferromone: 1
+   node to: 6, distance: 7, ferromone: 1
+   node to: 7, distance: 4, ferromone: 1
+   node to: 9, distance: 6, ferromone: 1
+paths for node #9:
+   node to: 0, distance: 3, ferromone: 1
+   node to: 1, distance: 5, ferromone: 1
+   node to: 2, distance: 8, ferromone: 1
+   node to: 3, distance: 8, ferromone: 1
+   node to: 4, distance: 1, ferromone: 1
+   node to: 5, distance: 4, ferromone: 1
+   node to: 6, distance: 3, ferromone: 1
+   node to: 7, distance: 4, ferromone: 1
+   node to: 8, distance: 6, ferromone: 1
+
+progress: 0%, processed 0 out of 1000
+progress: 1%, processed 10 out of 1000
+progress: 2%, processed 20 out of 1000
+progress: 3%, processed 30 out of 1000
+progress: 4%, processed 40 out of 1000
+progress: 5%, processed 50 out of 1000
+progress: 6%, processed 60 out of 1000
+progress: 7%, processed 70 out of 1000
+progress: 8%, processed 80 out of 1000
+progress: 9%, processed 90 out of 1000
+progress: 10%, processed 100 out of 1000
+progress: 11%, processed 110 out of 1000
+progress: 12%, processed 120 out of 1000
+progress: 13%, processed 130 out of 1000
+progress: 14%, processed 140 out of 1000
+progress: 15%, processed 150 out of 1000
+progress: 16%, processed 160 out of 1000
+progress: 17%, processed 170 out of 1000
+progress: 18%, processed 180 out of 1000
+progress: 19%, processed 190 out of 1000
+progress: 20%, processed 200 out of 1000
+150 5 0 1 0 10 34.6 28
+150 5 0 1 0.2 40 33.6 28
+progress: 21%, processed 210 out of 1000
+progress: 22%, processed 220 out of 1000
+progress: 23%, processed 230 out of 1000
+progress: 24%, processed 240 out of 1000
+progress: 25%, processed 250 out of 1000
+progress: 26%, processed 260 out of 1000
+progress: 27%, processed 270 out of 1000
+progress: 28%, processed 280 out of 1000
+progress: 29%, processed 290 out of 1000
+progress: 30%, processed 300 out of 1000
+progress: 31%, processed 310 out of 1000
+progress: 32%, processed 320 out of 1000
+progress: 33%, processed 330 out of 1000
+progress: 34%, processed 340 out of 1000
+progress: 35%, processed 350 out of 1000
+200 5 0.4 0.6 0.4 20 34.8 28
+progress: 36%, processed 360 out of 1000
+progress: 37%, processed 370 out of 1000
+progress: 38%, processed 380 out of 1000
+progress: 39%, processed 390 out of 1000
+progress: 40%, processed 400 out of 1000
+progress: 41%, processed 410 out of 1000
+250 5 0 1 0.4 40 34.2 28
+250 5 0 1 0.8 10 34.8 28
+progress: 42%, processed 420 out of 1000
+250 5 0 1 0.8 40 33.8 28
+progress: 43%, processed 430 out of 1000
+250 5 0.2 0.8 0.8 20 34.6 28
+progress: 44%, processed 440 out of 1000
+progress: 45%, processed 450 out of 1000
+progress: 46%, processed 460 out of 1000
+progress: 47%, processed 470 out of 1000
+progress: 48%, processed 480 out of 1000
+progress: 49%, processed 490 out of 1000
+progress: 50%, processed 500 out of 1000
+300 5 0 1 0 10 34 28
+300 5 0 1 0.2 10 34.6 28
+300 5 0 1 0.4 10 33.8 28
+progress: 51%, processed 510 out of 1000
+300 5 0 1 0.6 10 34.8 28
+progress: 52%, processed 520 out of 1000
+progress: 53%, processed 530 out of 1000
+progress: 54%, processed 540 out of 1000
+300 5 0.4 0.6 0.4 10 34.8 28
+progress: 55%, processed 550 out of 1000
+progress: 56%, processed 560 out of 1000
+progress: 57%, processed 570 out of 1000
+300 5 0.6 0.4 0.6 40 34.4 28
+300 5 0.6 0.4 0.8 10 33.8 28
+progress: 58%, processed 580 out of 1000
+progress: 59%, processed 590 out of 1000
+progress: 60%, processed 600 out of 1000
+350 5 0 1 0 20 34.4 28
+350 5 0 1 0 30 33.8 28
+progress: 61%, processed 610 out of 1000
+350 5 0 1 0.8 10 33.8 28
+350 5 0 1 0.8 30 34.8 28
+progress: 62%, processed 620 out of 1000
+350 5 0.2 0.8 0.2 20 34.8 28
+progress: 63%, processed 630 out of 1000
+350 5 0.2 0.8 0.4 20 34.8 28
+progress: 64%, processed 640 out of 1000
+350 5 0.2 0.8 0.8 40 34.8 28
+progress: 65%, processed 650 out of 1000
+350 5 0.4 0.6 0.8 20 34.8 28
+progress: 66%, processed 660 out of 1000
+350 5 0.6 0.4 0 30 34.6 28
+progress: 67%, processed 670 out of 1000
+progress: 68%, processed 680 out of 1000
+progress: 69%, processed 690 out of 1000
+progress: 70%, processed 700 out of 1000
+400 5 0 1 0 20 34.6 28
+400 5 0 1 0 30 33.6 28
+progress: 71%, processed 710 out of 1000
+400 5 0 1 0.4 20 34.2 28
+400 5 0 1 0.8 20 34.8 28
+400 5 0 1 0.8 30 34.4 28
+progress: 72%, processed 720 out of 1000
+400 5 0.2 0.8 0 30 34.2 28
+progress: 73%, processed 730 out of 1000
+400 5 0.2 0.8 0.6 30 34.8 28
+400 5 0.2 0.8 0.6 40 34 28
+400 5 0.2 0.8 0.8 30 34.4 28
+progress: 74%, processed 740 out of 1000
+400 5 0.4 0.6 0.4 10 34.8 28
+progress: 75%, processed 750 out of 1000
+400 5 0.4 0.6 0.6 10 34.4 28
+progress: 76%, processed 760 out of 1000
+400 5 0.6 0.4 0 10 34.8 28
+progress: 77%, processed 770 out of 1000
+progress: 78%, processed 780 out of 1000
+progress: 79%, processed 790 out of 1000
+progress: 80%, processed 800 out of 1000
+450 5 0 1 0 30 34.6 28
+450 5 0 1 0.2 10 34.4 28
+progress: 81%, processed 810 out of 1000
+450 5 0 1 0.4 20 34.4 28
+450 5 0 1 0.4 30 34 28
+450 5 0 1 0.4 40 34.6 28
+450 5 0 1 0.8 10 34.4 28
+450 5 0 1 0.8 20 34.2 28
+progress: 82%, processed 820 out of 1000
+progress: 83%, processed 830 out of 1000
+450 5 0.2 0.8 0.6 10 34 28
+450 5 0.2 0.8 0.6 40 34.8 28
+progress: 84%, processed 840 out of 1000
+450 5 0.4 0.6 0 20 34.8 28
+progress: 85%, processed 850 out of 1000
+450 5 0.4 0.6 0.8 30 34.2 28
+progress: 86%, processed 860 out of 1000
+450 5 0.6 0.4 0 20 34.6 28
+450 5 0.6 0.4 0.4 10 34.8 28
+progress: 87%, processed 870 out of 1000
+progress: 88%, processed 880 out of 1000
+450 5 0.8 0.2 0.2 30 34.8 28
+450 5 0.8 0.2 0.4 10 34.8 28
+progress: 89%, processed 890 out of 1000
+progress: 90%, processed 900 out of 1000
+500 5 0 1 0 30 34.2 28
+progress: 91%, processed 910 out of 1000
+500 5 0 1 0.4 40 34.8 28
+500 5 0 1 0.6 20 34.4 28
+500 5 0 1 0.6 30 34.8 28
+500 5 0 1 0.8 10 34.8 28
+500 5 0 1 0.8 30 34.4 28
+progress: 92%, processed 920 out of 1000
+500 5 0 1 0.8 40 34.4 28
+500 5 0.2 0.8 0.2 10 34.6 28
+progress: 93%, processed 930 out of 1000
+500 5 0.2 0.8 0.4 40 34.6 28
+500 5 0.2 0.8 0.8 20 34.8 28
+500 5 0.2 0.8 0.8 30 34 28
+progress: 94%, processed 940 out of 1000
+progress: 95%, processed 950 out of 1000
+500 5 0.4 0.6 0.6 40 34.6 28
+500 5 0.4 0.6 0.8 10 34.2 28
+progress: 96%, processed 960 out of 1000
+progress: 97%, processed 970 out of 1000
+500 5 0.6 0.4 0.4 30 34.8 28
+500 5 0.6 0.4 0.6 40 33.4 28
+progress: 98%, processed 980 out of 1000
+progress: 99%, processed 990 out of 1000
+progress: 100%, processed 1000 out of 1000

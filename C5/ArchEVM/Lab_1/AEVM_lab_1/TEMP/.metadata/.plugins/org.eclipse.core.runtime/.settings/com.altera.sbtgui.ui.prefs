@@ -1,0 +1,4 @@
+eclipse.preferences.version=1
+newSoftwareExampleWizardPage.defaultLocation=C\:\\TEMP\\software\\hello
+newSoftwareExampleWizardPage.sopcinfoFile=C\:\\TEMP\\nios.sopcinfo
+newSoftwareExampleWizardPage2.newBspLocation=C\:\\TEMP\\software\\hello_bsp

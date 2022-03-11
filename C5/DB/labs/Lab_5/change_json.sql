@@ -1,0 +1,1 @@
+SELECT jsonb_set('{"id":2489,"surname":"Панкратова","name":"Инна","lastname":"Павловна","age":18,"departament":"Л4","sex":"ж"}', '{name}', jsonb '"Бебра"');

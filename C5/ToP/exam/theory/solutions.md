@@ -1,0 +1,1 @@
+https://github.com/Winterpuma/BMSTU/tree/main/5-semester/5-probability-theory/Exam

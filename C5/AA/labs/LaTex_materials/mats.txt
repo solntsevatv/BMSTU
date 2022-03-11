@@ -1,0 +1,9 @@
+http://mydebianblog.blogspot.com/2008/11/latex.html
+http://www.bakoma-tex.com/menu/about.php
+https://texstudio.org
+https://www.yworks.com/products/yed
+Альтернативный TeX-шаблон для ВКР:
+https://github.com/architectv/tex-diploma-template
+https://m.habr.com/ru/post/343644/
+https://retro.glvrd.ru
+Материалы по теху от строганова

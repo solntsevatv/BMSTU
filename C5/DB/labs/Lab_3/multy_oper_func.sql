@@ -1,0 +1,37 @@
+CREATE OR REPLACE FUNCTION public.genderSelectForDepartament_lab_3(
+    dep_p TEXT
+)
+RETURNS TABLE (
+    id INT,
+    name TEXT,
+    surname TEXT,
+    lastname TEXT,
+    age INT,
+    departament TEXT,
+    sex TEXT
+)
+AS $$
+BEGIN
+    RETURN QUERY
+	SELECT *
+    FROM (
+		SELECT *
+		FROM STUDENTS
+		UNION
+		SELECT TEACHERS.id, TEACHERS.name, TEACHERS.surname, TEACHERS.lastname, TEACHERS.age, TEACHERS.departament, TEACHERS.sex
+		FROM TEACHERS
+		) AS STUDENT_TEACHER_UNION
+	WHERE STUDENT_TEACHER_UNION.sex = 'м' AND STUDENT_TEACHER_UNION.departament = dep_p;
+
+    RETURN QUERY
+	SELECT *
+    FROM (
+		SELECT *
+		FROM STUDENTS
+		UNION
+		SELECT TEACHERS.id, TEACHERS.name, TEACHERS.surname, TEACHERS.lastname, TEACHERS.age, TEACHERS.departament, TEACHERS.sex
+		FROM TEACHERS
+		) AS STUDENT_TEACHER_UNION
+	WHERE STUDENT_TEACHER_UNION.sex = 'ж' AND STUDENT_TEACHER_UNION.departament = dep_p;
+END;
+$$ LANGUAGE plpgsql

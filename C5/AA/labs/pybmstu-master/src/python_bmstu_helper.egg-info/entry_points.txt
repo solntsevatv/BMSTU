@@ -1,0 +1,3 @@
+[console_scripts]
+pybmstu = pybmstu.main:main
+
