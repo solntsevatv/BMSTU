@@ -1,5 +1,6 @@
 from cProfile import run
 from cmath import inf, nan
+from logging import exception
 import table as tb
 import graph as gh
 from math import isnan
@@ -196,7 +197,7 @@ if __name__ == '__main__':
             print('Пикар, p=3', len(y_pikar_3))
             print('Пикар, p=4', len(y_pikar_4))
             print()
-
+            
             algos = ['Эйлер'] * len(x_euler)
             algos.extend(['Рунге-Кутт'] * len(x_runge_cutt))
             algos.extend(['Пикар, p=1'] * len(x_pikar_1))
