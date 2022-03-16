@@ -22,4 +22,96 @@
 \section{Задание 1}
 Написать функцию, которая по своему списку-аргументу lst определяет является ли он палиндромом (то есть равны ли lst и (reverse lst)).
 
+\begin{lstlisting}
+(defun my_reverse_rec (lst new_lst)
+  (if (not (eql (cdr lst) nil))
+      (my_reverse_rec (cdr lst) (cons (car lst) new_lst))
+      (cons (car lst) new_lst)))
+
+(defun my_reverse (lst)
+  (my_reverse_rec lst nil))
+
+(defun cmp_list_rec (lst_1 lst_2)
+  (if (eql (car lst_1) (car lst_2))
+      (if (not (or (eql (cdr lst_1) nil) (eql (cdr lst_2) nil)))
+          (cmp_list_rec (cdr lst_1) (cdr lst_2))
+          (if (and (eql (cdr lst_1) nil) (eql (cdr lst_2) nil))
+              t
+              nil))
+      nil))
+
+(defun check_palindrom (lst)
+  (cmp_list_rec lst (my_reverse lst)))
+\end{lstlisting}
+
 \section{Задание 2}
+Написать предикат set-equal, который возвращает t, если два его множества-аргумента содержат одни и те же элементы, порядок которых не имеет значения.
+
+\begin{lstlisting}
+(defun in-list (lst elem)
+  (if (eql (car lst) elem)
+      t
+      (if (eql (cdr lst) nil)
+          nil
+          (in-list (cdr lst) elem)
+          )
+      )
+  )
+
+(defun set-equal-rec (set_1 set_2)
+  (if (in-list set_1 (car set_2))
+      (if (not (eql (cdr set_2) nil))
+          (set-equal-rec set_1 (cdr set_2))
+          t
+          )
+      nil
+      )
+  )
+
+(defun set-equal (set_1 set_2)
+  (and (set-equal-rec set_1 set_2) (set-equal-rec set_2 set_1))
+  )
+\end{lstlisting}
+
+
+\section{Задание 3}
+Напишите свои необходимые функции, которые обрабатывают таблицу из 4-х точечных пар: (страна . столица), и возвращают по стране - столицу, а по столице — страну.
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 4}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 5}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 6}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 7}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 8}
+
+\begin{lstlisting}
+\end{lstlisting}
+
+
+\section{Задание 9}
+
+\begin{lstlisting}
+\end{lstlisting}
