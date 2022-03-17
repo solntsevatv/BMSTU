@@ -78,40 +78,247 @@
 Напишите свои необходимые функции, которые обрабатывают таблицу из 4-х точечных пар: (страна . столица), и возвращают по стране - столицу, а по столице — страну.
 
 \begin{lstlisting}
+(setf  table (list (cons 'russia 'moscow) (cons 'germany 'berlin) (cons 'france 'paris) (cons 'spain 'madrid)))
+
+(defun find-cntry-rec (table capital)
+  (if (eql (cdar table) capital)
+      (caar table)
+      (if (not (eql (cdr table) nil))
+          (find-cntry-rec (cdr table) capital)
+          nil
+          )
+      )
+  )
+
+(defun find-capital-rec (table country)
+  (if (eql (caar table) country)
+      (cdar table)
+      (if (not (eql (cdr table) nil))
+          (find-cntry-rec (cdr table) country)
+          nil
+          )
+      )
+  )
 \end{lstlisting}
 
 
 \section{Задание 4}
+Напишите функцию swap-first-last, которая переставляет в списке-аргументе первый и последний элементы.
 
 \begin{lstlisting}
+(defun swap-first-last-rec (lst first)
+  (if (eql (cddr lst) nil)
+      (if (defvar new-first (cdr lst))
+          (if (and
+               (or (setf new-first (cons (cadr lst) (cdr first))) t)
+               (or (setf (cdr first) nil) t)
+               (or (setf (cdr lst) first) t)
+               )
+              new-first
+              nil
+           )
+          nil)
+      (swap-first-last (cdr lst) first)
+      )
+  )
+
+(defun swap-first-last (lst)
+  (swap-first-last-rec lst lst))
 \end{lstlisting}
 
 
 \section{Задание 5}
+Напишите функцию swap-two-ellement, которая переставляет в списке- аргументе два указанных своими порядковыми номерами элемента в этом списке.
 
 \begin{lstlisting}
-\end{lstlisting}
+(defun get-by-index (lst index cntr)
+  (if (not (eql lst nil))
+      (if (eql cntr index)
+          lst
+          (get-by-index (cdr lst) index (+ cntr 1))
+          )
+      nil
+   )
+  )
 
+(defun swap-two-ellement (lst first second)
+  (let ((first_elem (get-by-index lst first 0)) (second_elem (get-by-index lst second 0)))
+    (let ((temp (car first_elem)))
+      (setf (car first_elem) (car second_elem))
+      (setf (car second_elem) temp)
+      lst
+      )
+    )
+  )
+\end{lstlisting}
 
 \section{Задание 6}
+Напишите две функции, swap-to-left и swap-to-right, которые производят одну круговую перестановку в списке-аргументе влево и вправо, соответственно.
 
 \begin{lstlisting}
-\end{lstlisting}
+(defun my-last (lst)
+  (if (eql (cdr lst) nil)
+      lst
+      (my-last (cdr lst))
+      )
+  )
 
+(defun swap-to-left-rec (lst temp)
+  (if (not (eql lst nil))
+      (let ((temp-local (car lst)))
+        (setf (car lst) temp)
+        (swap-to-left-rec (cdr lst) temp-local)
+        )
+      )
+  )
+
+(defun swap-to-left (lst)
+  (let ((temp (car lst)))
+    (setf (car lst) (car (my-last lst)))
+    (swap-to-left-rec (cdr lst) temp)
+    lst
+    )
+  )
+
+(defun my_reverse_rec (lst new_lst)
+  (if (not (eql (cdr lst) nil))
+      (my_reverse_rec (cdr lst) (cons (car lst) new_lst))
+      (cons (car lst) new_lst)))
+
+(defun my_reverse (lst)
+  (my_reverse_rec lst nil))
+
+(defun swap-to-right (lst)
+  (let ((temp nil) (reverse-lst (my_reverse lst)))
+    (setf temp (car reverse-lst))
+    (setf (car reverse-lst) (car (my-last reverse-lst)))
+    (swap-to-left-rec (cdr reverse-lst) temp)
+    (my_reverse reverse-lst)
+    )
+  )
+\end{lstlisting}
 
 \section{Задание 7}
+Напишите функцию, которая добавляет к множеству двухэлементных списков новый двухэлементный список, если его там нет.
 
 \begin{lstlisting}
-\end{lstlisting}
+(defun cmp-lst (lst_1 lst_2)
+  (if (and
+       (eql lst_1 nil)
+       (eql lst_2 nil)
+       )
+      t
+      (if
+       (and
+        (not (eql lst_1 nil))
+        (not (eql lst_2 nil))
+        )
+       (if (eql (car lst_1) (car lst_2))
+           (cmp-lst (cdr lst_1) (cdr lst_2))
+           )
+       )
+      )
+  )
 
+(defun check-duosublist (lst sublst)
+  (if (eql lst nil)
+      nil
+      (if (cmp-lst (car lst) sublst)
+          t
+          (check-duosublist (cdr lst) sublst)
+          )
+      )
+  )
+
+(defun append-if-not-in-lst (lst sublst)
+  (if (not (check-duosublist lst sublst))
+      (append lst (list sublst))
+      )
+  ) 
+\end{lstlisting}
 
 \section{Задание 8}
+Напишите функцию, которая умножает на заданное число-аргумент первый числовой
+элемент списка из заданного 3-х элементного списка-аргумента, когда
+a) все элементы списка --- числа,
+6) элементы списка --- любые объекты.
 
 \begin{lstlisting}
+(defun mult-first-num (lst num)
+  (if (not (eql lst nil))
+      (and
+       (setf (car lst) (* (car lst) num))
+       lst
+       )
+      )
+  )
+
+(defun mult-first-maybe-num-rec (lst num first)
+  (if (not (eql lst nil))
+      (if (numberp (car lst))
+          (and
+           (setf (car lst) (\* (car lst) num))
+           first
+           )
+          (mult-first-maybe-num-rec (cdr lst) num first)
+          )
+      )
+  )
+
+(defun mult-first-maybe-num (lst num)
+  (mult-first-maybe-num-rec lst num lst)
+  )
 \end{lstlisting}
 
-
 \section{Задание 9}
+Напишите функцию, select-between, которая из списка-аргумента из 5 чисел выбирает только те, которые расположены между двумя указанными границами-аргументами и возвращает их в виде списка (упорядоченного по возрастанию списка чисел (+ 2 балла)).
 
 \begin{lstlisting}
+(defun count-size-rec (lst cnt)
+  (if (eql (cdr lst) nil)
+      cnt
+      (count-size-rec (cdr lst) (+ cnt 1)))
+  )
+
+(defun count-size (lst)
+  (count-size-rec lst 1)
+  )
+
+(defun check-nums (lst)
+  (if (eql (cdr lst) nil)
+      t
+      (if (numberp (car lst))
+          (check-nums (cdr lst))
+          nil
+       )
+   )
+  )
+
+;; 0 -- start -- num -- end -->
+
+(defun select-between-rec (lst new-lst start end)
+  (if (not (eql lst nil))
+      (if (and
+           (>= (car lst) start)
+           (<= (car lst) end)
+           )
+          (if (eql new-lst nil)
+              (select-between-rec (cdr lst) (list (car lst)) start end)
+              (select-between-rec (cdr lst) (append new-lst (list (car lst))) start end)
+              )
+          (select-between-rec (cdr lst) new-lst start end)
+          )
+      new-lst
+      )
+  )
+
+
+(defun select-between (lst start end)
+  (if (and
+       (eql (count-size lst) 5)
+       (check-nums lst)
+       )
+      (select-between-rec lst nil start end)
+      )
+  )
 \end{lstlisting}

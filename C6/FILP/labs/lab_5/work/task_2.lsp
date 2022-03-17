@@ -1,6 +1,3 @@
-
-
-
 (defun in-list (lst elem)
   (if (eql (car lst) elem)
       t
@@ -22,5 +19,5 @@
   )
 
 (defun set-equal (set_1 set_2)
-  (and (set-equal-rec set_1 set_2) (set-equal-rec set_2 set_1))
+  (let (set-equal-rec set_1 set_2) (set-equal-rec set_2 set_1))
   )
