@@ -185,28 +185,30 @@ inode описывают физический файл, и они же так н
 
 Следующие блоки содержат косвенные ссылки (indirect block). Этот блок содержит адреса инфомационных блоков.
 
-struct super\_block\\
-\{\\
-	struct list\_head head s\_list;\\
-	dev\_t s\_dev;\\
-	unsigned long s\_blocksize;\\
-	struct file\_system\_type *s\_type;\\
-	unsigned long s\_flags;\\
-	unsigned long s\_magik;\\
-	struct dentry *s\_root;\\
-	struct rw\_semaphore s\_unmount;\\
-	...\\
-	struct list\_head s\_mount;\\
-	struct block\_device *s\_bdev;\\
+\begin{lstlisting}
+struct super_block
+{
+	struct list_head head s_list;
+	dev_t s_dev;
+	unsigned long s_blocksize;
+	struct file_system_type * s_type;
+	unsigned long s_flags;
+	unsigned long s_magik;
+	struct dentry *s_root;
+	struct rw_semaphore s_unmount;
+	...
+	struct list_head s_mount;
+	struct block_device *s_bdev;
 	
-	const struct dentry\_operations *s\_d\_op;\\
-	...\\
-	/* s\_node\_list\_lock protects s\_inode*/\\
-	spin\_lock\_t s\_inode\_list\_lock;\\
-	struct list\_head s\_inodes;\\
-	...\\
-	struct list\_head s\_inodes\_wb;\\
-\};\\
+	const struct dentry_operations *s_d_op;
+	...
+	/* s_node_list_lock protects s_inode*/
+	spin_lock_t s_inode_list_lock;
+	struct list_head s_inodes;
+	...
+	struct list_head s_inodes_wb;
+};
+\end{lstlisting}
 
 Суперблоки объединены в спискок. В системе будет существовать столько суперблоков, сколько смонтировано файловых систем. При этом может быть смонтировано несколько файловых систем одного и того же типа, поэтому первое поле представляет из себя список.
 
@@ -225,11 +227,185 @@ struct super\_block\\
 Кроме этого есть список inodов. В этом списке находятся все inodы - дескрипторы физических файлов, созданных в конкретной файловой системе. 
 
 s\_inodes\_wb - Write Back inodes, список грязных inodов. Грязным файлом называется изменённое значение.\\
-struc super\_operations\\
-\{\\
-	struct inode *(*alloc\_inode)(struct super\_block *sb);\\
-	void (*destroy\_inode)(struct inode *);\\
-	void (*free\_inode)(struct inode *);\\
-\};\\
+\begin{lstlisting}
+struc super_operations
+{
+	struct inode * ( *alloc_inode)(struct super_block *sb);
+	void ( *destroy_inode)(struct inode *);
+	void ( *free_inode)(struct inode *);
+
+	void ( *dirty_inode)(...);
+	int ( *write_inode)(...);
+	int ( *drop_inode)(...);
+	int ( *evict_inode)(...);
+
+	void ( *put_super)(struct super_block, ...);
+	int ( *remount_fs)(struct super_block, ...);
+	void ( *unmount_begin)(struct super_block, ...);
+	
+};
+\end{lstlisting}
 
 Очевидно, что поскольку любая файловая система предназначена для хранения физических данных. Причём не просто данных, а поименованных. Мы видим, что это работа с inodом.
+
+\chapter{Лекция 3}
+\section{Структура operations}
+Функции в структуре operations описаны в мануале unix.
+
+Очевидно, что суперблок это основная структра, с которой начинается доступ к конкретной файловой системе. Когда файловая система монтируется, то на диск загружается её суперблок. Важнейшей информацией являются указатели на списки i\_nodeов - структур, описывающих физические файлы на диске и содержат информацию для доступа к информации, хранящейся в конкретном файле. 
+
+dirty - название для изменённых элементов файловой системы. Данная информация является важной для системы, поскольку таким образом система помечает для себя, что данны структуры должны быть обновлены. 
+
+drop\_inode - вызывается подсистемой ВФС, когда исчезает последняя ссылка на inode.
+
+write\_inode - функция для освобождения inoda.
+
+put\_super - вызывается при размонтировании файловой системы. 
+
+remount\_fs - вызывается при монтировании с другими параметрами монтирования.
+
+Новый суперблок создаётся командой alloc\_super.
+\begin{lstlisting}
+static struct super_block *alloc_super(struct file_system_type * type, int flags, struct user_namespace *user_ns)
+{
+	// Вызов, выделяющий память
+	struct super_block *s = kzalloc(sizeof(struct super_block, GFP_USER));
+
+	// Определение структуры struct_superoperations
+	static const struct super_operations default_op;
+}
+
+static void destroy_super(struct super_block *s){...}
+\end{lstlisting}
+
+Если файловой системе необходимо выполнить запись в суперблок, то будет вызвана функция write\_super следующим образом:\\
+\begin{lstlisting}
+sb->s_op->write_super(sb);
+\end{lstlisting}
+
+В ВФС определена структура file\_system\_type, описывающая конкретный тип файловой системы. Рассмотрим её подробнее. Файловая структура одна, смонтированных файловых систем может быть много.
+\begin{lstlisting}
+struct file_system_type
+{
+	const char *name;
+	int fs_flags;
+	#define FS_REQUIRES_DEV 1 // определяется требование блочного устройства
+	#define FS_USERNS_MOUNT 8 // определяет, что файловая система монтируется на root user
+
+	struct dentry * ( *mount)(struct file_system_type*, int, const char*, void *); // для монтирования и заполнения суперблока соответствую щими данными.
+	void ( *kill_sb(struct super_block*);
+	
+	struct file_system_type *next;
+	struct file_system_type *next;
+	struct hlist_head fs_super; // список объектов типа super block
+
+	struct lock_class_key s_lock_key;
+	struct lock_class_key s_unmount_key;
+	// и ещё 5 подобных полей
+}
+\end{lstlisting}
+
+Многие поля в file\_system\_type отвечают за предоставление монопольного доступа к элементам файловой системы.
+
+Виртуальная файловая система не связана ни с каким блочным устройством. Поэтому при написании лабораторной по виртуальной файловой системе необходимо объявить тип файловой системы.
+
+Когда файловая система монтируется, для конкретной файловой системы выделяется экземпляр структуры struct\_vfs\_mount. Эта структура представялет конкретный экземпляр файловой системы.
+
+\begin{lstlisting}
+struct vfsmount
+{
+	struct dentry *mount_root; // точка монтирования
+	struct super_block *mnt_sbl // указатель на суперблок
+	int mnt_flags; // флаги монтирования
+};
+\end{lstlisting}
+
+Пример заполнения стурктуры file\_system\_type:\\
+\begin{lstlisting}
+struct file_system_type my_fs_t = 
+{
+	.owner = THIS_MODULE,
+	.name = "my_fs",
+	.kill_sb = my_kill_superblock,
+	.fs_flags = FS_REQUIRES_DEV
+}
+\end{lstlisting}
+
+Одна и та же файловая система может быть подмонтирована несколько раз. В системе определено несколько разновидностей фунцкии mount.
+
+\begin{lstlisting}
+extern struct denty *mount_ns(struct file_system_type *fs_type, int flags, void data, int ( *fill_super)(struct super_block *, void *, int));
+extern struct dentry* mount_bdev(struct file_system_type* fs_type, int flags, const char* dev_name, void* data, int ( *file_super)(...);
+extern struct dentry *mount_nodev(struct file_system_type* fs_type, int flags, void* data, int ( *file_super)(...));
+\end{lstlisting}
+
+fill\_super выполняет основную работу по заполнению полей в структуре super\_block.
+
+Для того, чтобы операционная система и виртуальная файловая система/подсистема операционной системы зарегистрировала созданную структуру file\_system\_type в системе имеются соответствующие функции.
+\begin{lstlisting}
+res = register_filesystem(&my_fs_t);
+\end{lstlisting}
+
+Это делается в функции init модуля. В результате системе станет известно имя вашей функции mount, kill\_super.
+\begin{lstlisting}
+res = unregister_filesystem(&my_fs_t); // вызывается в функции exit модуля
+\end{lstlisting}
+
+\section{Индексный дескриптор inode}
+В UNIX имя файла не является его идентификатором. Идентификатором файла является его inode. Соответственно у каждого файла есть один inode. В системе существует два типа inodов. Дисковый inode и inode ядра. Очевидно, что описывая один и тот же файл эти структуры противоречить друг другу не могут, однако дисковый inode содержит информацию об адресах блоков данных конкретного файла. Но для сокращения обращений к данным файла и подобным данным всё кэшируется. Именно отсюда следует, что в системе существует inode ядра, к которому происходит обращение при работе с файлом. Это делается для ускорения доступа к данным.
+
+Копии индекса, которые находятся в памяти содержат поля, которых нет в дисковом inode, а именно:\\
+1) поля, ответственные за блокировки\\
+2) логический номер устройства\\
+3) номер индекса (в дисковом индексе это поле не нужно, так как на диске индексы хранятся в линейном массиве и ядро идентифицирует индекс по го смещению)\\
+4) ссылки на другие индексы для организации в ядре хеш-очереди. Кроме этого ядро ведёт список свободных индексов.\\
+5) счётчик ссылок на файлю Т.е. сколько раз файл был открыт.\\
+
+\begin{lstlisting}
+struct inode
+{
+	umode_t i_mode;
+	kuid_t i_uid;
+	kgid_t i_gid;
+	unsigned int i_flags;
+	...
+	const struct inode_operations *i_op;
+	struct super_block *i_sb;
+	unsigned long i_ino;
+	
+	union {
+		const unsigned int i_nlink;
+		unsigned int _i_nling;
+	}
+
+	dev_t i_rdev;
+	uoff_t i_size;
+	...
+	unsigned short i_bytes;
+	unsigned int i_blksize;
+	blkcnt_t i_blocks;
+	ubu i_version;
+	atomic_t i_count;
+};
+\end{lstlisting}
+
+Операции в системе, определённые для inodов:
+\begin{lstlisting}
+struct inode_operations
+{
+	struct dentry * ( *lookup)(struct inode *, struct dentry *, unsigned int);
+	const char * ( * get_link)(struct dentry *, struct inode*, struct delayed_call* );
+	int ( *permission)(struct inode*, int);
+	...
+	int ( *link)(struct dentry*, struct inode*, struct dentry*);
+	int ( *symblink)(struct inode*, struct *dentry *, const char *); 
+}
+\end{lstlisting}
+
+
+
+
+
+
+
+
