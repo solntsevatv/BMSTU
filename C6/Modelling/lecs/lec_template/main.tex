@@ -434,7 +434,7 @@ $T_{0}, T_{w}, p$ - заданы\\
 
 \begin{equation}
 \begin{cases}
-F = -\frac{c}{3kR(r)} \frac{du}{dz}, (1)\\
+F = -\frac{c}{3Rk(r)} \frac{du}{dz}, (1)\\
 \frac{1}{R} \frac{1}{Z} \frac{d}{dZ} (ZF) = c k (r) (u_{p}(r) - u(r)), (2)\\
 Z = 0, F = 0, (3)\\
 Z = 1, F = m \frac{cu}{2}, (4)\\
@@ -463,7 +463,7 @@ $Z = 1, F = m\frac{cu}{2} = 0$\\
 \section{Задача Коши}
 $Z = 0, F(0) = 0$\\
 $u(0) = \xi \cdot u_{p}(0), \xi = 10^{-2} ... 1$\\
-$\psi(\xi) = F \frac{mcu}{2}$\\
+$\psi(\xi) = F(R) - \frac{m c u(R)}{2}$\\
 
 Задача - взяв интервал кси обеспечить, чтобы определялось, как полуразность. $\xi = \frac{\xi_{1} + \xi{2}}{2}$\\
 Вычисляем в цикле, пока $\bigg|\frac{\xi_{1} - \xi_{2}}{\xi}\bigg| < \epsilon, \epsilon = 10^{-4}$\\
