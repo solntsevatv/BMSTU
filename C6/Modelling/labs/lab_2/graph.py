@@ -8,8 +8,9 @@ def plot_results(x_list: list[float], y_list: list[float], algos: list[str]) -> 
     df["y"] = y_list
     df["алгоритмы"] = algos
 
+    sns.set_theme(style="darkgrid")
     #with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
     #    print(df)
 
-    sns.lineplot(data=df, y='y', x="x", hue='алгоритмы')
+    sns.lineplot(x=x_list, y=y_list, hue=algos)
     plt.show()
