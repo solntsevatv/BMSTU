@@ -1,124 +1,120 @@
+from tkinter.messagebox import YES
 from algos import *
-from cProfile import run
-from cmath import inf, nan
-from logging import exception
-import table as tb
-import graph as gh
+from typing import Callable
+from numpy import e
 from math import isnan
-from typing import Any, Callable
-import pandas as pd
+from cmath import exp, inf, nan
+import seaborn as sns
+import matplotlib.pyplot as plt
+from prettytable import PrettyTable
+import prettytable
 
 user_input = -1
 while user_input != 0:
+    xi = 0.01
+    xi_step = 0.001
+    psi_last = None
+    h = 0.01
+    z_0 = 0
+    f_0 = 0
+    z_max = 1
+    
     user_input = int(input('Выберите действие:\nВыйти (0)\nРассчитать значения (1)\n> '))
+    if user_input == 0:
+        break
     if user_input == 1:
-        a = float(input('Введите значение коэффициента a:\n> '))
-        h = float(input('Введите значение шага h:\n> '))
-        #a = 1
-        #h = 0.1
-        accuracy = 0.01
-        #x_max = 2 #сходится к двойке, выявлено эмпирически
-        x_0 = 0
-        y_0 = 0
+        user_input = input('Изменить значения параметров? (y/n)\n> ')
+        if user_input == 'y':
+            print('Текущие значения:')
+            print('xi: ' + str(xi))
+            print('Шаг xi: ' + str(xi_step))
+            print('h: ' + str(h))
+            print('z_0: ' + str(z_0))
+            print('z_max: ' + str(z_max))
+            print('F_0: ' + str(f_0))
+            new_params = input(\
+                'Введите новые значения через пробел, если не меняется, то "-" \n[xi, xi_step, h, z_0, z_max, F_0]\n> ').split()
+            if new_params[0] != '-':
+                xi = float(new_params[0])
+            if new_params[1] != '-':
+                xi_step = float(new_params[1])
+            if new_params[2] != '-':
+                h = float(new_params[2])
+            if new_params[3] != '-':
+                z_0 = float(new_params[3])
+            if new_params[4] != '-':
+                z_max = float(new_params[4])
+            if new_params[5] != '-':
+                f_0 = float(new_params[5])
+    
 
-        x_max_euler, _ = find_x_max_euler(1, h, y_0, x_0, accuracy)
-        x_max_runge, _ = find_x_max_runge_cutt(a, 2, h, y_0, x_0, accuracy)
-        x_max = max(x_max_euler, x_max_runge)
+    #xi_arr = []
+    #psi_arr = []
 
-        #x_max_euler, x_max_runge = 2, 2
+    while xi <= 1:
+        z_res, u_res, f_res = runge_kutt_4(h, z_0, f_0, xi * u_p(z_0), 1, F_z, u_z)
+        if psi_last == None:
+            psi_last = f_res[-1] - m * c * u_res[-1] / 2
+        else:
+            if psi_last > 0 and f_res[-1] - m * c * u_res[-1] / 2 < 0 or psi_last < 0 and f_res[-1] - m * c * u_res[-1] / 2 > 0:
+                break
+            #xi_arr.append(xi)
+            #psi_arr.append(f_res[-1] - m * c * u_res[-1] / 2)
+            psi_last = f_res[-1] - m * c * u_res[-1] / 2
+        xi += xi_step
 
-        x_euler, y_euler = count_euler(h, x_0, y_0, x_max_euler)    
-        x_runge_cutt, y_runge_cutt = count_runge_cutt(a, h, x_0, y_0, x_max_runge)
-        x_pikar_1, y_pikar_1 = count_pikar(h, x_0, x_max, f_p_1)
-        x_pikar_2, y_pikar_2 = count_pikar(h, x_0, x_max, f_p_2)
-        x_pikar_3, y_pikar_3 = count_pikar(h, x_0, x_max, f_p_3)
-        x_pikar_4, y_pikar_4 = count_pikar(h, x_0, x_max, f_p_4)
+    eps = 1e-4
+    xi_1 = xi - xi_step
+    xi_2 = xi
+    xi_true = (xi_1 + xi_2)/2
+    while abs(xi_1 - xi_2)/xi_true > eps:
+        _, u_res_1, f_res_1 = runge_kutt_4(h, z_0, f_0, xi_1 * u_p(z_0), 1, F_z, u_z)
+        _, u_res_t, f_res_t = runge_kutt_4(h, z_0, f_0, xi_true * u_p(z_0), 1, F_z, u_z)
+        _, u_res_2, f_res_2 = runge_kutt_4(h, z_0, f_0, xi_2 * u_p(z_0), 1, F_z, u_z)
 
-        i = 0
-        while abs(y_pikar_1[i] - y_pikar_2[i]) > accuracy and i < int(len(y_pikar_1)/2):
-            i += 1
-        y_pikar_1 = y_pikar_1[i:int(len(y_pikar_1) - i)]
-        x_pikar_1 = x_pikar_1[i:int(len(x_pikar_1) - i)]
-        
-        i = 0
-        while abs(y_pikar_2[i] - y_pikar_3[i]) > accuracy and i < int(len(y_pikar_2)/2):
-            i += 1
-        y_pikar_2 = y_pikar_2[i:int(len(y_pikar_2) - i)]
-        x_pikar_2 = x_pikar_2[i:int(len(x_pikar_2) - i)]
+        psi_1 = f_res_1[-1] - m * c * u_res_1[-1] / 2
+        psi_t = f_res_t[-1] - m * c * u_res_t[-1] / 2
+        psi_2 = f_res_2[-1] - m * c * u_res_2[-1] / 2
 
-        i = 0
-        while abs(y_pikar_3[i] - y_pikar_4[i]) > accuracy and i < int(len(y_pikar_3)/2):
-            i += 1
-        y_pikar_3 = y_pikar_3[i:int(len(y_pikar_3) - i)]
-        x_pikar_3 = x_pikar_3[i:int(len(x_pikar_3) - i)]
+        if psi_1 > 0 and psi_t < 0:
+            xi_2 = xi_true
+        elif psi_t > 0 and psi_2 < 0:
+            xi_1 = xi_true
+        elif psi_1 < 0 and psi_t > 0:
+            xi_2 = xi_true
+        elif psi_t < 0 and psi_2 > 0:
+            xi_1 = xi_true
 
-        print('Количество шагов для каждого из методов:')
-        print('Эйлер: ', len(y_euler))
-        print('Рунге-Кутт: ', len(y_runge_cutt))
-        print('Пикар, p=1', len(y_pikar_1))
-        print('Пикар, p=2', len(y_pikar_2))
-        print('Пикар, p=3', len(y_pikar_3))
-        print('Пикар, p=4', len(y_pikar_4))
-        print()
-        
-        algos = ['Эйлер'] * len(x_euler)
-        algos.extend(['Рунге-Кутт'] * len(x_runge_cutt))
-        algos.extend(['Пикар, p=1'] * len(x_pikar_1))
-        algos.extend(['Пикар, p=2'] * len(x_pikar_2))
-        algos.extend(['Пикар, p=3'] * len(x_pikar_3))
-        algos.extend(['Пикар, p=4'] * len(x_pikar_4))
-        
-        df = pd.DataFrame()
-        pd.options.display.expand_frame_repr = False
-        df["x"] = x_euler[int(len(x_euler)/2):]
-        df["Эйлер"] = y_euler[int(len(x_euler)/2):]
-        y_runge_cutt_table = y_runge_cutt.copy()
-        y_runge_cutt_table = y_runge_cutt_table[int(len(y_runge_cutt_table)/2):]
-        while len(y_runge_cutt_table) < len(y_euler[int(len(x_euler)/2):]):
-            y_runge_cutt_table.append('-')
+        xi_true = (xi_1 + xi_2)/2
 
-        y_pikar_1_table = y_pikar_1.copy()
-        y_pikar_1_table = y_pikar_1_table[int(len(y_pikar_1_table)/2):]
-        while len(y_pikar_1_table) < len(y_euler[int(len(x_euler)/2):]):
-            y_pikar_1_table.append('-')
+    z_res, u_res, f_res = runge_kutt_4(h, z_0, f_0, xi_true * u_p(z_0), 1, F_z, u_z)
+    u_p_res = []
+    for z in z_res:
+        u_p_res.append(u_p(z))
 
-        y_pikar_2_table = y_pikar_2.copy()
-        y_pikar_2_table = y_pikar_2_table[int(len(y_pikar_2_table)/2):]
-        while len(y_pikar_2_table) < len(y_euler[int(len(x_euler)/2):]):
-            y_pikar_2_table.append('-')
+    algos = []
 
-        y_pikar_3_table = y_pikar_3.copy()
-        y_pikar_3_table = y_pikar_3_table[int(len(y_pikar_3_table)/2):]
-        while len(y_pikar_3_table) < len(y_euler[int(len(x_euler)/2):]):
-            y_pikar_3_table.append('-')
+    cols = ['z', 'u_p', 'u', 'F']
+    table = PrettyTable(cols)
+    for z, u_p_r, u_r, f_r in zip(z_res, u_p_res, u_res, f_res):
+        table.add_row([z, u_p_r, u_r, f_r])
 
-        y_pikar_4_table = y_pikar_4.copy()
-        y_pikar_4_table = y_pikar_4_table[int(len(y_pikar_4_table)/2):]
-        while len(y_pikar_4_table) < len(y_euler[int(len(x_euler)/2):]):
-            y_pikar_4_table.append('-')
+    print('h: ' + str(h))
+    print('xi step: ' + str(xi_step))
+    print('xi: ' + str(xi_true))
+    print(table)
+    #sns.lineplot(x=xi_arr, y=psi_arr)
+    #plt.show()
 
-        df["Рунге-Кутт"] = y_runge_cutt_table
-        df["Пикар, p=1"] = y_pikar_1_table
-        df["Пикар, p=2"] = y_pikar_2_table
-        df["Пикар, p=3"] = y_pikar_3_table
-        df["Пикар, p=4"] = y_pikar_4_table
+    with open('result.txt', 'w') as f:
+        f.write('h: ' + str(h) + '\n')
+        f.write('xi step: ' + str(xi_step) + '\n')
+        f.write('xi: ' + str(xi_true) + '\n')
+        f.write(str(table))
 
-        with pd.option_context('display.max_rows', None, 'display.max_columns', None):  # more options can be specified also
-            print(df)
-        
-        x = []
-        x.extend(x_euler)
-        x.extend(x_runge_cutt)
-        x.extend(x_pikar_1)
-        x.extend(x_pikar_2)
-        x.extend(x_pikar_3)
-        x.extend(x_pikar_4)
-        y = []
-        y.extend(y_euler)
-        y.extend(y_runge_cutt)
-        y.extend(y_pikar_1)
-        y.extend(y_pikar_2)
-        y.extend(y_pikar_3)
-        y.extend(y_pikar_4)
-
-        gh.plot_results(x, y, algos)
+    fig, axs = plt.subplots(nrows=2, ncols=2)
+    sns.lineplot(x=z_res + z_res, y=u_p_res + u_res, hue=['u_p(z)'] * len(u_p_res) + ['u(z)'] * len(u_res), ax=axs[0][0])
+    sns.lineplot(x=z_res, y=u_p_res, hue=['u_p(z)'] * len(u_p_res), ax=axs[0][1])
+    sns.lineplot(x=z_res, y=u_res, hue=['u(z)'] * len(u_res), ax=axs[1][0])
+    sns.lineplot(x=z_res, y=f_res, hue=['F(z)'] * len(f_res), ax=axs[1][1])
+    plt.show()

@@ -4,8 +4,10 @@ from math import isnan
 from cmath import exp, inf, nan
 import seaborn as sns
 import matplotlib.pyplot as plt
+from prettytable import PrettyTable
+import prettytable
 
-c = 3 * 10e+10
+c = 3e+10
 k_0 = 0.0008
 m = 0.786
 R = 0.35 #m
@@ -69,28 +71,80 @@ def runge_kutt_4(h_0: float, z_0: float, f_0: float, u_0: float, z_max: float, F
     return z_res, u_res, f_res
 
 if __name__ == '__main__':
-    # Z_0 = 0, F(0) = 0
-    xi = 0.036
-    z_res, u_res, f_res = runge_kutt_4(0.01, 0, 0, xi * u_p(0), 1, F_z, u_z)
+    xi = 0.01
+    xi_step = 0.001
+    psi_last = None
+    h = 0.01
+    z_0 = 0
+    f_0 = 0
+    
+    #xi_arr = []
+    #psi_arr = []
 
-    import graph as gh
-    print(z_res)
-    print(u_res)
-    print(f_res)
-    x_list = []
-    y_list = []
+    while xi <= 1:
+        z_res, u_res, f_res = runge_kutt_4(h, z_0, f_0, xi * u_p(0), 1, F_z, u_z)
+        if psi_last == None:
+            psi_last = f_res[-1] - m * c * u_res[-1] / 2
+        else:
+            if psi_last > 0 and f_res[-1] - m * c * u_res[-1] / 2 < 0 or psi_last < 0 and f_res[-1] - m * c * u_res[-1] / 2 > 0:
+                break
+            #xi_arr.append(xi)
+            #psi_arr.append(f_res[-1] - m * c * u_res[-1] / 2)
+            psi_last = f_res[-1] - m * c * u_res[-1] / 2
+        xi += xi_step
+
+    eps = 1e-4
+    xi_1 = xi - xi_step
+    xi_2 = xi
+    xi_true = (xi_1 + xi_2)/2
+    while abs(xi_1 - xi_2)/xi_true > eps:
+        _, u_res_1, f_res_1 = runge_kutt_4(h, z_0, f_0, xi_1 * u_p(0), 1, F_z, u_z)
+        _, u_res_t, f_res_t = runge_kutt_4(h, z_0, f_0, xi_true * u_p(0), 1, F_z, u_z)
+        _, u_res_2, f_res_2 = runge_kutt_4(h, z_0, f_0, xi_2 * u_p(0), 1, F_z, u_z)
+
+        psi_1 = f_res_1[-1] - m * c * u_res_1[-1] / 2
+        psi_t = f_res_t[-1] - m * c * u_res_t[-1] / 2
+        psi_2 = f_res_2[-1] - m * c * u_res_2[-1] / 2
+
+        if psi_1 > 0 and psi_t < 0:
+            xi_2 = xi_true
+        elif psi_t > 0 and psi_2 < 0:
+            xi_1 = xi_true
+        elif psi_1 < 0 and psi_t > 0:
+            xi_2 = xi_true
+        elif psi_t < 0 and psi_2 > 0:
+            xi_1 = xi_true
+
+        xi_true = (xi_1 + xi_2)/2
+    
+    z_res, u_res, f_res = runge_kutt_4(h, z_0, f_0, xi_true * u_p(0), 1, F_z, u_z)
+    u_p_res = []
+    for z in z_res:
+        u_p_res.append(u_p(z))
+    
     algos = []
 
-    fig, axs = plt.subplots(ncols=2)
-    sns.lineplot(x=z_res, y=u_res, hue=['u(z)'] * len(u_res), ax=axs[0])
-    sns.lineplot(x=z_res, y=f_res, hue=['F(z)'] * len(f_res), ax=axs[1])
+    cols = ['z', 'u_p', 'u', 'F']
+    table = PrettyTable(cols)
+    for z, u_p_r, u_r, f_r in zip(z_res, u_p_res, u_res, f_res):
+        table.add_row([z, u_p_r, u_r, f_r])
+
+    print('h: ' + str(h))
+    print('xi step: ' + str(xi_step))
+    print('xi: ' + str(xi_true))
+    print(table)
+    #sns.lineplot(x=xi_arr, y=psi_arr)
+    #plt.show()
+
+    with open('result.txt', 'w') as f:
+        f.write('h: ' + str(h) + '\n')
+        f.write('xi step: ' + str(xi_step) + '\n')
+        f.write('xi: ' + str(xi_true) + '\n')
+        f.write(str(table))
+
+    fig, axs = plt.subplots(ncols=4)
+    sns.lineplot(x=z_res + z_res, y=u_p_res + u_res, hue=['u_p(z)'] * len(u_p_res) + ['u(z)'] * len(u_res), ax=axs[0])
+    sns.lineplot(x=z_res, y=u_p_res, hue=['u_p(z)'] * len(u_p_res), ax=axs[1])
+    sns.lineplot(x=z_res, y=u_res, hue=['u(z)'] * len(u_res), ax=axs[2])
+    sns.lineplot(x=z_res, y=f_res, hue=['F(z)'] * len(f_res), ax=axs[3])
     plt.show()
-    #x_list.extend(z_res)
-    #y_list.extend(u_res)
-    #algos.extend(['u(z)'] * len(u_res))
-
-    #x_list.extend(z_res)
-    #y_list.extend(f_res)
-    #algos.extend(['F(z)'] * len(f_res))
-
-    #gh.plot_results(x_list, y_list, algos)
