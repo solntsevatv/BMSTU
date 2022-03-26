@@ -22,7 +22,7 @@ def k(Z: float) -> float:
     return k_0 * ((T(Z)/300)**2)
 
 def u_p(Z: float):
-    return (3.084e-4)/(e**(4.709e+4/T(Z)) - 1)
+    return (3.084e-4)/(e**(4.799e+4/T(Z)) - 1)
 
 def F_z(Z: float, F: Callable, u: float) -> float: # F_z(u)
     if Z == 0:
@@ -61,17 +61,13 @@ def runge_kutt_4(h_0: float, z_0: float, f_0: float, u_0: float, z_max: float, F
         f_n = f_n + (k_1 + 2 * k_2 + 2 * k_3 + k_4) / 6
         z_n += h
 
-        #if abs(u_n) == inf or isnan(u_n):
-        #    break
-        #if abs(f_n) == inf or isnan(f_n):
-        #    break
         z_res.append(z_n)
         u_res.append(u_n)
         f_res.append(f_n)
     return z_res, u_res, f_res
 
 if __name__ == '__main__':
-    xi = 0.01
+    xi = 0.001
     xi_step = 0.001
     psi_last = None
     h = 0.01
@@ -93,7 +89,7 @@ if __name__ == '__main__':
             psi_last = f_res[-1] - m * c * u_res[-1] / 2
         xi += xi_step
 
-    eps = 1e-4
+    eps = 1e-5
     xi_1 = xi - xi_step
     xi_2 = xi
     xi_true = (xi_1 + xi_2)/2
