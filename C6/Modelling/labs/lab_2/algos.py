@@ -24,7 +24,7 @@ def k(Z: float) -> float:
 def u_p(Z: float):
     return (3.084e-4)/(e**(4.799e+4/T(Z)) - 1)
 
-def F_z(Z: float, F: Callable, u: float) -> float: # F_z(u)
+def F_z(Z: float, F: float, u: float) -> float: # F_z(u)
     if Z == 0:
         return ((c * R)/2) * k(Z) * (u_p(Z) - u)
     else:

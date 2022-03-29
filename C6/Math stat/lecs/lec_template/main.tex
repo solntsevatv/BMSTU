@@ -159,10 +159,121 @@ $C = \frac{(\frac{n_{1}}{n_{2}})^{\frac{n_{1}}{2}}}{B(\frac{n_{1}}{2}, \frac{n_{
 $B(x, y) = \int\limits_{0}^{1} t^{x - 1} (1 - t)^{y - 1} dt$  - бета-функция Эйлера.\\
 2) Если $\nu ~ F(n_{1}, n_{2})$, то $\frac{1}{\nu} ~ F(n_{2}, n_{1})$\\
 
+\chapter{Лекция 6}
+\section{Переписать}
 
+\chapter{Лекция 7}
+По определению оценка $\hat{\theta}$ называется эффективной оценкой параметра $\theta$, если:\\
+1) $\hat{\theta}$ является наименьшей оценкой для теты\\
+2) оценка $\hat{\theta}$ обладает наименьшей дисперсией среди всех несмещённых $\theta$
 
+Замечание: иногда говорят не об эффективной вообще точечной оценке, а об оценке, эффективной в некотором классе. Пусть $\Theta$ - некоторый класс несмещённых оценок для параметра $\theta$.\\
+По определению оценка $\hat{\theta}$ называется эффективной в классе $\Theta$, если она имеет наименьшую дисперсию среди всех оценок этого класса, т.е. - $(\forall \tilde{\theta})(D\hat{\theta} \leqslant D\tilde{\theta})$.
 
+Пример:\\
+Пусть X - случайная величина, обладающая MX = m и DX = $b^2$. Покажем, что оценка $\hat{m_{1}}(\overrightarrow{X}) = \overline{X}$ является эффективной оценкой для m и b в классе линейных оценок.\\
 
+Решение:\\
+1) Линейная оценка имеет вид: $\hat{m}(\overline{X}) = \sum\limits_{i = 1}^{n} \lambda_{i} X_{i} = \lambda_{1} X_{1} + ... + \lambda_{n} X_{n} (*)$\\
+где $\lambda_{i} \in R, i  = \overline{1,n}$, тогда матожидание линейной оценки (*) :
+a) $M[\hat{m}] = \lambda_{1} M X_{1} + ... + \lambda_{n} M X_{n} = \bigg| X_{i} ~ X_{j}, MX = m\bigg| = (\lambda_{1} + ... + \lambda_{n})m$. Так как оценка является несмещённой, то $M[\hat{m}] = m \Rightarrow \sum\limits_{i=1}^{n} = 1$\\
+b) Дисперсия оценки (*):\\
+$D[\hat{m}] = \sum\limits_{i=1}^{n} \lambda_{i}^{2} DX_{i} = \lambda^{2} \sum_{i=1}^{n} \lambda_{i}^{2}$ - аналогично матожиданию.\\
 
+2) Попробуем подобрать коэффициент $\lambda_{i}, i = \overline{1, n}$, и (*) так, чтобы:\\
+\begin{equation}
+\begin{cases}
+D[\hat{m}] \rightarrow min\\
+\sum\limits_{i=1}^{n} \lambda_{i} = 1\\
+\end{cases}
+\end{equation}
 
+Для этого нужно решить задачу условной оптимизации:\\
+\begin{equation}
+\begin{cases}
+\phi(\lambda_{1} ... \lambda_{n}) = \lambda_{1}^{2} + ... + \lambda_{n}^{2} \rightarrow min\\
+\sum\lambda_{i} = 1
+\end{cases}
+\end{equation}
 
+Запишем функцию Лагранжа:\\
+$L(\lambda_{1} ... \lambda_{n}, \mu) = \lambda_{1}^{2} + ... + \lambda_{n}^{2} - \mu\sum\lambda_{i} - \mu$\\
+
+\begin{equation}
+\begin{cases}
+\frac{dL}{d\lambda_{i}} = 0\\
+\frac{dL}{d\mu} = 0\\
+\end{cases}
+\end{equation}
+
+Следовательно:\\
+\begin{equation}
+\begin{cases}
+\frac{dL}{d\lambda_{i}} = 2\lambda_{i} - \mu = 0\\
+\frac{dL}{d\mu} = - (\sum\limits_{i=1}^{n} \lambda_{i} - 1) = 0\\
+\end{cases}
+\end{equation}
+
+Из n первых уравнений - $\lambda_{i} = \frac{\mu}{2}, i = \overline{1, n}$\\
+
+Покажем, что найденное решение соответствует точке условного минимума целевой функции, таким образом, подставляя $\lambda_{i}$ в * получаем искомую оценку с минимальной дисперсией в классе линейных оценок.\\
+$\hat{m}(\overrightarrow{X}) = \frac{1}{n}X_{1} + ... + \frac{1}{n} X_{n} = \overline{X}$\\
+Дисперсия этой оценке:\\
+$D[\hat{m}] = \sigma^{2}\sum_{i=1}^{n}\lambda_{i}^{2} = \frac{\sigma^{2}}{n}$\\
+
+Теорема:\\
+Теорема о единственности эффективной оценки:\\
+Пусть $\tilde{\theta_{1}}(\overline{X})$ и $\tilde{\theta_{2}}(\overline{X})$ - эффективные оценки некой оценки параметра $\theta$, тогда $\tilde{\theta_{1}}(\overline{X}) = \tilde{\theta_{2}}(\overline{X})$
+
+\section{Неравенство Рао-Крамера}
+Пусть X - случайная величина, закон распределения которой зависит от вектора $\overrightarrow{\theta} = (\theta_{1}, ..., \theta_{n})$ параметров.\\
+Пусть $\overrightarrow{X} = (X_{1}, ..., X_{n})$ - случайная выборка из генеральной совокупности X.\\
+
+Опеределение - функцией правдоподобия, отвечающей случайной выборке  $\overrightarrow{X}$ называется функция $L(\overrightarrow{X}, \overrightarrow{\theta}) = p(X_{1}, \overrightarrow{\theta}) ... p(X_{1}, \overrightarrow{\theta})$\\
+где:\\
+\begin{equation}
+p(X_{i}, \overrightarrow{\theta}) = 
+\begin{cases}
+f(X_{i}, \overrightarrow{\theta}), \text{если X - непрерывная случайная величина}\\
+P(X = X_{i}), \text{если X - дискретная случайная величина}\\
+\end{cases}
+\end{equation}
+
+Пусть r = 1, т.е. $\overrightarrow{\theta} = (\theta_{1}) = (\theta)$\\
+
+Определение - количество информации по Фишеру, содержащееся в случайной величине $\overrightarrow{X}$, называется число $I(\theta) = M[(\frac{d ln L}{d\theta})^{2}]$\\
+
+Теорема:\\
+Неравенство Рао-Крамера:\\
+Пусть рассматриваемая модель является регулярной, $\hat{\theta}(\overrightarrow{X})$ - несмещённая оценка параметра тета. Тогда:\\
+$D[\hat{\theta}] \geqslant \frac{1}{I(\theta)}$ - неравенство Рао-Крамера.\\
+
+Замечание:\\
+1) При доказательстве теоремы Рао используются дифференциальные параметры под знаком интеграла:\\
+$\frac{d}{d\phi}\int\limits_{G}\phi(\overrightarrow{X}, \theta)dx = \int\limits_{G} \frac{d\phi(\overrightarrow{X}, \theta)}{d\theta}dx$\\
+Т.е. параметрические модели, для которых справедливо это равенство, будем называть регулярными. \\
+2) Неравенство Рао даёт нижнюю границу для дисперсии для всех возможных оценок параметра $\theta$.\\
+3) Величина $e(\hat{\theta}) = \frac{1}{I(\theta)D(\hat{\theta})}$ называется показателем эффективности по Рао точечной оценки $\hat{\theta}$\\
+$0 \leqslant e(\hat{\theta}) \leqslant 1$\\
+Очевидно, что оценка эффективная по Рао будет "просто"  эффективной. Вопрос в том, для каких параметричесих моделей существует эффективная по Рао оценка (то есть существует оценка, дисперсия которой равна $\frac{1}{I(\theta)}$) мы оставим без рассмотрения.\\
+4) В некоторых случаях вводят в рассмотрение величину $I_{0} (\theta) = M[(\frac{dp(X, \theta)}{d\theta})^{2}]$\\
+где $p(X, \theta)$ имеет тот же смысл, что и функция правдоподобия.\\
+Данную величину можно назвать количеством информации по Фишеру в одном испытании. Для некоторых параметрических моделей справедливо:\\
+$I(\theta) = nI_{0}(\theta)$,\\
+где n - объём случайной информации.\\
+
+Пример:\\
+Пусть $X ~ N(m, \sigma^{2})$, где m - неизвестна, $\sigma$ - известна. Докажем, что оценка $\hat{m_{1}}(\overrightarrow{X}) = \overline{X}$ для m является эффективной по Рао.\\
+1) Необходимо найти показатель эффективности оценки $\hat{m_{1}}$:\\
+$e(\hat{m}) = \frac{1}{I(m)D(\hat{m})}$, если данная величина равна 1, то оценка эффективна по Рао, иначе не является эффективной по Рао.
+2) $D[\hat{m}] = D[\overline{X}] = ... = \frac{\sigma^{2}}{n}$\\
+3) $I(\hat{m}) = ?$\\
+$I(\hat{m})=M[(\frac{d ln L}{dn})^{2}]$, составим функцию L правдоподобия:\\
+$L(\overline{X}, m) = p(X, m)\cdot ... \cdot p(X_{n}, m) = \frac{1}{(\sqrt{2 \pi})^{n} \sigma^{n}}e^{-\frac{1}{2\sigma^{2}}\sum(x_{i}-m)^{2}}$\\
+Тогда:\\
+$ln L(\overline{X}, n) = -\frac{n}{2}ln 2\pi - n ln \sigma - \frac{1}{2\sigma^{2}}\sum_{i=1}^{n}(m - X_{i})^{2}$\\
+$\frac{dln L(\overline{X}, m)}{dm} = -\frac{2}{2\sigma^{2}}\sum\limits_{i=1}^{n}(m - X_{i}) = \frac{1}{\sigma^{2}}\sum_{i=1}^{n}(X_{i} - m)$\\
+$(\frac{dln L(\overline{X}, m)}{dm})^{2} = \frac{1}{\sigma^{4}}[(X_{1} - m) + ... + (X_{n} - m)]^{2}$\\
+Т.о.:\\
+$I(m) = M[(\frac{d ln L(\overline{X}, m)}{dm})^{2}] = \frac{1}{\sigma^{4}}[\sum\limits_{i=1}^{n}M[(X_{i} - m)^{2} + 2\sum\limits_{1 \leqslant i < j \leqslant n}M[(X_{i} - m)(X_{j} - m)]] = \frac{1}{\sigma^{4}}[\sum\limits_{i=1}^{n} \sigma^{2} + 0] = \frac{1}{\sigma^{4}} n\sigma^{2} = \frac{n}{\sigma^{2}}$\\
+4) Получаем $e(\hat{m})$\\
