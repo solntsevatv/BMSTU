@@ -1,0 +1,8 @@
+(defun get_first_not_nil (lst)
+  (if (not (eql lst nil))
+   (if (eql (length (car lst)) 0)
+       (get_first_not_nil (cdr lst))
+       (caar lst)
+       )
+   )
+  )

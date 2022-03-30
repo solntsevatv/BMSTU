@@ -25,7 +25,7 @@ a) все элементы списка - числа,\\
 Функция, если все элементы - числа:\\
 \begin{lstlisting}
 (defun func_mult_x (n)
-  #'(lambda (x) (* x n))
+  #'(lambda (x) ( * x n))
   )
 
 (defun mult_numbers (lst x)
@@ -38,7 +38,7 @@ a) все элементы списка - числа,\\
 (defun func_mult_check_x (n)
   #'(lambda (x)
       (if (numberp x)
-          (* x n)
+          ( * x n)
           x
           )
       )
@@ -55,28 +55,69 @@ a) все элементы списка - числа,\\
 
 \begin{lstlisting}
 (defun check_palindrom (lst)
-  (eval `(and ,@(mapcar #'(lambda (x y) (eql x y)) lst (reverse lst))))
+  (reduce #'(lambda (x y) (and x y)) (mapcar #'(lambda (x y) (eql x y)) lst (reverse lst)))
   )
 \end{lstlistiing}
 
 \section{Задание 4}
 Написать предикат set-equal, который возвращает t, если два его множества-аргумента содержат одни и те же элементы, порядок которых не имеет значения.
 
-
+\begin{lstlisting}
+(defun set-equal (set_1 set_2)
+  (eval `(and ,@(mapcar #'(lambda (x)
+                     (eval `(or ,@x))
+                     )
+                 (mapcar #'(lambda (x)
+                             (mapcar #'(lambda (y)
+                                         (eql x y)
+                                         )
+                                     set_2
+                                     )
+                             )
+                         set_1
+                         )
+                 ))
+        )
+  )
+\end{lstlisting}
 
 \section{Задание 5}
 Написать функцию которая получает как аргумент список чисел, а возвращает список квадратов этих чисел в том же порядке.
 
+\begin{lstlisting}
+(defun square_lst (lst)
+  (mapcar (lambda (x) (* x x)) lst)
+  )
+\end{lstlisting}
+
 \section{Задание 6}
 Напишите функцию, select-between, которая из списка-аргумента, содержащего только числа, выбирает только те, которые расположены между двумя указанными границами-аргументами и возвращает их в виде списка.
 
+\begin{lstlisting}
+(defun select-between (lst a b)
+  (mapcan #'(lambda (x) (if (and (> x a) (< x b)) (list x))) lst)
+  )
+\end{lstlisting}
+
 \section{Задание 7}
-Написать функцию, вычисляющую декартово произведение двух своих списков-аргументов. ( Напомним, что А х В это множество всевозможных пар (a b), где а принадлежит А, принадлежит В.)
+Написать функцию, вычисляющую декартово произведение двух своих списков-аргументов. ( Напомним, что А х В это множество всевозможных пар (a b), где а принадлежит А, b принадлежит В.)
+
+\begin{lstlisting}
+(defun decart (lst1 lst2)
+  (mapcan #'(lambda (x) (mapcar #'(lambda (y) (list x y)) lst2)) lst1)
+  )
+\end{lstlisting}
 
 \section{Задание 8}
 Почему так реализовано reduce, в чем причина?
-(reduce #'+0) -> 0\\
-(reduce #'+ ()) -> 0\\
+(reduce \#'+ 0) -> 0 - не работает, второй аргумент reduce должен быть последовательностью\\
+(reduce \#'+ ()) -> 0 - так как (+) -> 0, аналогично (reduce \#'* ()) -> 1 так как (*) -> 1\\
 
 \section{Задание 9}
 Пусть list-of-list список, состоящий из списков. Написать функцию, которая вычисляет сумму длин всех элементов list-of-list, т.е. например для аргумента ((1 2) (3 4)) -> 4.
+
+\begin{lstlisting}
+(defun lst-sub-len (lst)
+  (reduce #'+ (mapcar 'length lst))
+  )
+\end{lstlisting}

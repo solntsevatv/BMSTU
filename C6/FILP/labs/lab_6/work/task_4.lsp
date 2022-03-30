@@ -1,3 +1,16 @@
-(defun check_palindrom (lst)
-  (eval `(and ,@(mapcar #'(lambda (x y) (eql x y)) lst (reverse lst))))
+(defun set-equal (set_1 set_2)
+  (eval `(and ,@(mapcar #'(lambda (x)
+                     (eval `(or ,@x))
+                     )
+                 (mapcar #'(lambda (x)
+                             (mapcar #'(lambda (y)
+                                         (eql x y)
+                                         )
+                                     set_2
+                                     )
+                             )
+                         set_1
+                         )
+                 ))
+        )
   )
