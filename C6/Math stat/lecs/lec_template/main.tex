@@ -255,7 +255,7 @@ $\frac{d}{d\phi}\int\limits_{G}\phi(\overrightarrow{X}, \theta)dx = \int\limits_
 2) Неравенство Рао даёт нижнюю границу для дисперсии для всех возможных оценок параметра $\theta$.\\
 3) Величина $e(\hat{\theta}) = \frac{1}{I(\theta)D(\hat{\theta})}$ называется показателем эффективности по Рао точечной оценки $\hat{\theta}$\\
 $0 \leqslant e(\hat{\theta}) \leqslant 1$\\
-Очевидно, что оценка эффективная по Рао будет "просто"  эффективной. Вопрос в том, для каких параметричесих моделей существует эффективная по Рао оценка (то есть существует оценка, дисперсия которой равна $\frac{1}{I(\theta)}$) мы оставим без рассмотрения.\\
+Очевидно, что оценка эффективная по Рао будет ''просто'' эффективной. Вопрос в том, для каких параметричесих моделей существует эффективная по Рао оценка (то есть существует оценка, дисперсия которой равна $\frac{1}{I(\theta)}$) мы оставим без рассмотрения.\\
 4) В некоторых случаях вводят в рассмотрение величину $I_{0} (\theta) = M[(\frac{dp(X, \theta)}{d\theta})^{2}]$\\
 где $p(X, \theta)$ имеет тот же смысл, что и функция правдоподобия.\\
 Данную величину можно назвать количеством информации по Фишеру в одном испытании. Для некоторых параметрических моделей справедливо:\\
@@ -277,3 +277,237 @@ $(\frac{dln L(\overline{X}, m)}{dm})^{2} = \frac{1}{\sigma^{4}}[(X_{1} - m) + ..
 Т.о.:\\
 $I(m) = M[(\frac{d ln L(\overline{X}, m)}{dm})^{2}] = \frac{1}{\sigma^{4}}[\sum\limits_{i=1}^{n}M[(X_{i} - m)^{2} + 2\sum\limits_{1 \leqslant i < j \leqslant n}M[(X_{i} - m)(X_{j} - m)]] = \frac{1}{\sigma^{4}}[\sum\limits_{i=1}^{n} \sigma^{2} + 0] = \frac{1}{\sigma^{4}} n\sigma^{2} = \frac{n}{\sigma^{2}}$\\
 4) Получаем $e(\hat{m})$\\
+
+\chapter{Лекция 8}
+\section{Методы построения точечных оценок}
+1. Метод моментов\\
+2. Метод максимального правдоподобия.\\
+
+\section{Метод моментов}
+Пусть:\\
+1) X - некий случайный вектор, распередление которого зависит от вектора $\overrightarrow{\theta} = (\theta_{1}, ..., \theta_{n})$ неизвестных параметров.\\
+2) $\exists r $ первых моментов случайного вектора X, то есть $\exists M[X^{k}], k = 1,.. r$\\
+
+Тогда в методе моментов:\\
+1) Вычисляются теоретические моменты 1-го, 2-го, ..., r-го порядков, зависящих от неизвестных параметров:\\
+$m_{k}(\theta_{1}, ..., \theta_{r} = M[X^{k}], k = \overline{1, r}$ - теоретические моменты порядка k\\
+
+2) Теоретические моменты приравниваются к выборочным аналогам:\\
+
+\begin{equation}
+\begin{cases}
+m_{1}(\theta_{1}, ..., \theta_{r}) = \hat{m_{1}}(\overrightarrow{X})\\
+...\\
+m_{r}(\theta_{1}, ..., \theta_{r}) = \hat{m_{r}}(\overrightarrow{X})\\
+\end{cases}
+\end{equation}
+Система уравнений (возможно, нелинейных), относительно неизвестных параметров тета.\\
+
+3) Решаем получившуюся систему:\\
+\begin{equation}
+\begin{cases}
+\theta_{1} = \hat{\theta_{1}}(\overrightarrow{X})\\
+...\\
+\theta_{r} = \hat{\theta_{r}}(\overrightarrow{X})\\
+\end{cases}
+\end{equation}
+
+Полученные зависимости используются в качестве точечных оценок для полуинтервалов.\\
+
+Замечание:\\
+Иногда некоторые уравнения системы из подпункта (2) удобнее записывать относительно центральных, а не начальных моментов. В этом случает k-е уравнение будет иметь вид:\\
+$\mathring{m_{k}}(\theta_{1}, ..., \theta_{r}) = \hat{\circ{m_{k}}}(\overrightarrow{X})$, где:\\
+$\mathring{m_{k}}(\theta_{1}, ..., \theta_{r}) = M[(X - MX)^{k}]$\\
+$\hat{\mathring{m_{k}}}(\overrightarrow{X}) = \frac{1}{n}\sum\limits_{i=1}^{n}(X_{i} - \overline{X})^{k}$\\
+
+Пример:
+Пусть $X ~ R[a,b]$, гже а, b - произвольные параметры. С помощью метода моментов построить точечные оценки для a, b.\\
+1)\\
+\begin{equation}
+X ~ R[a, b] \Rightarrow f(x) = 
+\begin{cases}
+\frac{1}{b - a}, x \in [a ,b]\\
+0, \text{иначе}\\
+\end{cases}
+\end{equation}
+
+Неизвестные параметры (a и b), следовательно требуется два уравнения:\\
+\begin{equation}
+\begin{cases}
+m_{1}(a, b) = \hat{m_{1}}(\overrightarrow{X}) \text{ - относительно начального момента 1-го порядка}\\
+m_{2}(a, b) = \hat{m_{2}}(\overrightarrow{X}) \text{ - относительно центрального момента второго порядка}\\
+\end{cases}
+\end{equation}
+
+2) Найдём теоретические моменты:\\
+$m_{1}(a,b) = MX = \frac{a + b}{2}$\\
+$\circ{m_{2}}(a,b) = DX = \frac{(b - a)^{2}}{12}$\\
+
+Запишем выборочные моменты:\\
+$\hat{m_{1}}(a,b)=\frac{1}{n}\sum_{i=1}{n}X_{i} = \overline{X}$\\
+$\mathring{m_{2}}(a,b) = \frac{1}{n}\sum_{i=1}{n}(X-\overline{X})^{2} = \hat{\sigma}^{2}(\overrightarrow{X})$\\
+или\\
+$\mathring{m_{2}}(a,b) = \frac{1}{n - 1}\sum_{i=1}{n}(X-\overline{X})^{2} = S^{2}(\overrightarrow{X})$\\
+
+Используем $S^{2}$\\
+3) Приходим к следующей системе уравнений:\\
+\begin{equation}
+\begin{cases}
+\overline{X} = \frac{a + b}{2}\\
+S^{2} = \frac{(b - a)^{2}}{12}\\
+\end{cases}
+\end{equation}
+a, b = ?\\
+Далее система решается стандартно\\
+
+Замечание:\\
+1) Поскольку выбранные моменты $\hat{m_{k}}(\overrightarrow{X})$ и $\hat{\mathring{m_{k}}}(\overrightarrow{X})$ являются состоятельными оценками соотвествтующих теоретических моментов, то можно показать, что в случае непрерывной зависимости решения системы из пункта (2) от $\hat{m_{k}}$ (или от $\mathring{m_{k}}$) оценки параметров, полученные с использованием этого метода также являются состоятельными.\\
+2) Так как выборочные моменты степени k при $k \geqslant 2$ являются смещёнными оценками своих теоретических аналогов, то и оценки параметров, полученные с помощью метода моментов также могут быть смещёнными.
+
+\section{Метод максимального правдоподобия}
+Пусть:\\
+1) X - случайная величина, зависящая от вектора параметров $\overrightarrow{\theta} = (\theta_{1}, ..., \theta_{r})$\\
+
+Ранее было введено понятие функции правдоподобия случайной выборки X:\\
+$L(\overrightarrow{X}, \overrightarrow{\theta}) = p(X_{1}, \overrightarrow{\theta}) \cdot ... \cdot p(X_{n}, \overrightarrow{\theta})$\\,
+где:\\
+\begin{equation}
+p(X_{i}, \overrightarrow{\theta}) = 
+\begin{cases}
+f(X_{i}, \overrightarrow{\theta}), \text{если X - непрерывная случайная величина}\\
+P(X = X_{i}), \text{если X - дискретная случайная величина}\\
+\end{cases}
+\end{equation}
+
+Можно показать, что чем ближе значение вектора $\overrightarrow{\tilde{\theta}}$ к теоретическому значению вектора тета, тем большие значения принимает функция правдоподобия $L(\overrightarrow{x}, \overrightarrow{\theta})$\\
+
+В методе максимального правдоподобия в качестве точечных оценок неизвестного параметра выступают значения, доставляющие максимальное значение функции правдоподобия. Для реализации метода необходимо решить задачу\\
+$L(\overrightarrow{X},\overrightarrow{\theta}) \rightarrow max_{\overrightarrow{\theta}}$ ( * )\\
+тогда:\\
+$\hat{\overrightarrow{\theta}}(\overrightarrow{X}) = arg max_{\overrightarrow{\theta}} L(\overrightarrow{X}, \overrightarrow{\theta})$\\
+
+
+Замечание:\\
+1) Для решения задачи ( * ) можно использовать неоходимые условия дифференциальной функции нескольких переменных:\\
+\begin{equation}
+\begin{cases}
+\frac{\delta L(\overrightarrow{X}, \overrightarrow{\theta})}{\delta \theta_{1}} = 0\\
+\frac{\delta L(\overrightarrow{X}, \overrightarrow{\theta})}{\delta \theta_{2}} = 0\\
+\end{cases}
+\end{equation}
+Данные уравнения называются уравнениями правдоподобия\\
+2) Функция L является произведением n сомножетелей и работать с ней не всегда удобно. Поэтому часто вместо задачи ( * ) решют эквивалентную задачу ( ** ):\\
+$ln L(\overrightarrow{X},\overrightarrow{\theta}) \rightarrow max_{\overrightarrow{\theta}}$\\
+т.е.:\\
+$\hat{\overrightarrow{\theta}}(\overrightarrow{X}) = arg max_{\overrightarrow{\theta}} ln L(\overrightarrow{X}, \overrightarrow{\theta})$\\
+Данная замена эквивалентна, так как ln - монотонная возрастающая функция.\\	
+
+Пример:\\
+$X ~ R[a,b]$, a,b - неизвестные параметры, необходимо с помощью метода максимального правдоподобия построить точеные оценки параметров a и b.\\
+
+Решение:\\
+1)\\
+\begin{equation}
+X ~ R[a, b] \Rightarrow f(x) = 
+\begin{cases}
+\frac{1}{b - a}, x \in [a ,b]\\
+0, \text{иначе}\\
+\end{cases}
+\end{equation}
+
+Выпишем функцию правдоподобия $L(\overrightarrow{X}, a, b) = \text{так как X - непрерывная случайная величина} = f(X_{1}, a, b) \cdot ... \cdot f(X_{n}, a, b) = \frac{1}{b - a} \cdot \frac{1}{b - a} \cdot ... \cdot \frac{1}{b - a}  = \frac{1}{(b - a)^{n}}$\\
+2) $ ln L = ln \frac{1}{(b - a)^{n}} = -n ln (b - a) \rightarrow max_{a,b}$\\
+Уравнения правдоподобия:\\
+\begin{equation}
+\begin{cases}
+\frac{\delta ln L}{\delta a} = \frac{n}{b - a} = 0\\
+\frac{\delta ln L}{\delta b} = -\frac{n}{b - a} = 0\\
+\end{cases}
+\end{equation}
+
+n = 0 - противоречие, возникло из-за того, что неверно записана формула для L.\\
+Правильная запись формулы:\\
+\begin{equation}
+L(X, a, b) = 
+\begin{cases}
+\frac{1}{(b - a)^{n}}, if X(1) \geqslant a, X(n) \leqslant b\\
+0, \text{иначе}\\
+\end{cases}
+\end{equation}
+
+Вычисление $\frac{\delta L(\overrightarrow{X}, a, b)}{\delta a}, \frac{\delta L(\overrightarrow{X}, a, b)}{\delta b}$ затруднительно, так как a и b также зависят от области, в которой L > 0\\
+Попробуем в ''в лоб'' найти $max_{a,b} L(\overrightarrow{X},a,b)$\\
+a) если\\
+\begin{equation}
+\begin{cases}
+a \leqslant X_{(1)}\\
+b \geqslant X_{(n)}\\
+\end{cases}
+\end{equation}
+то L > 0, в противном случае L = 0. Так как $L \rightarrow max$, то условия на a, b в любом случае должны быть верны\\
+b) при вычислении условий на a, b\\
+$L = \frac{1}{(b - a)^{n}}$\\
+Так как $L \rightarrow max$, то $b - a \rightarrow min$\\
+Тогда приближаем к подзадаче:
+\begin{equation}
+\begin{cases}
+b - a \rightarrow min\\
+a \leqslant X_{(1)}\\
+b \geqslant X_{(n)}\\
+\end{cases}
+\end{equation}
+
+Таким образом:
+\begin{equation}
+\begin{cases}
+\hat{a}(\overrightarrow{X}) = X_{(1)}\\
+\hat{b}(\overrightarrow{X}) = X_{(n)}\\
+\end{cases}
+\end{equation}
+
+\section{Интервальные оценки}
+Основные понятия:\\
+1) Рассматривается вторая задача математической статистики.\\
+
+Ранее для решения этой задачи использовались точечные оценки. Тогда принимались равенства $\theta_{j} = \hat{\theta_{j}}(\overrightarrow{x}), j = \overline{1, k}$\\
+Для некоторых статистик $\hat{\theta_{1}}, ..., \hat{\theta_{r}}$. Недостатком данного подходя является то, что он выдаёт информацию о вероятностных характеритиках точности оценивания неизвестных параметров. Кроме точечных оценок для решения второй задачи математической статистики используется другой подход. Для простоты будем считать, что у нас только один неизвестный параметр $r = 1, \overrightarrow{\theta} = (\theta_{1}) = (\theta) = \theta$.
+
+Опеределение:\\
+Интервальной оценкой параметра $\theta$ уровня $\gamma$ ($\gamma$-интервальной оценкой) называют пару интервальных статистик $\underline{\theta}(\overrightarrow{X}), \overline{\theta}(\overrightarrow{X})$ таких, что:\\
+$P\{\theta \in (\underline{\theta}(\overrightarrow{X}), \overline{\theta}(\overrightarrow{X})\} = \gamma$\\
+
+Замечание:\\
+1) Интервальная оценка является интервалом со случайными границами $\underline{\theta}(\overrightarrow{X}), \overline{\theta}(\overrightarrow{X}$, который  накрывает инизвестно теоретическое значение параметра с вероятностью $\gamma$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

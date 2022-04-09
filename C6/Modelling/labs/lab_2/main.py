@@ -9,7 +9,6 @@ import matplotlib.pyplot as plt
 from prettytable import PrettyTable
 import prettytable
 
-print(1)
 user_input = -1
 while user_input != 0:
     xi = 0.01
